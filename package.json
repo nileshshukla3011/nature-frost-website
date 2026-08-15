@@ -1,0 +1,29 @@
+{
+  "name": "nature-frost-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Nature Frost \u00e2\u20ac\u201d Premium IQF Frozen Fruits & Vegetables from India",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "serve": "npx serve out",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "lucide-react": "^0.545.0",
+    "next": "^16.3.1",
+    "next-themes": "^0.4.6",
+    "react": "19.1.1",
+    "react-dom": "19.1.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.13",
+    "@types/node": "^22.18.0",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "prettier": "^3.9.6",
+    "tailwindcss": "^4.1.13",
+    "typescript": "^5.9.2"
+  }
+}

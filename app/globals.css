@@ -1,0 +1,294 @@
+@import "tailwindcss";
+
+/*
+ * Dark mode is driven by a `.dark` class on <html>, which next-themes toggles.
+ * This overrides Tailwind v4's default prefers-color-scheme behaviour so the
+ * manual light/dark/system switch in the header actually works.
+ */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ==========================================================================
+   BRAND PALETTE
+   Green = fresh produce. Ice blue = the frozen half of the story.
+   Change a value here and it updates across the entire site.
+   ========================================================================== */
+:root {
+  /* Surfaces */
+  --background: #ffffff;
+  --surface: #f4f8f5;
+  --surface-alt: #eef4f0;
+  --card: #ffffff;
+  --border: #dfe8e3;
+  --border-strong: #c8d6cd;
+
+  /* Text */
+  --foreground: #0e1c16;
+  --muted-foreground: #4f645a;
+  /* Darkened to clear WCAG AA 4.5:1 on every light surface (min 4.80:1). */
+  --faint-foreground: #5d6f65;
+
+  /* Brand green */
+  --primary: #0b5d3b;
+  --primary-hover: #094a2f;
+  --primary-soft: #e6f2ec;
+  --primary-foreground: #ffffff;
+
+  /*
+   * Frost blue. Deep enough that accent-on-accent-soft badge text clears
+   * WCAG AA 4.5:1 (5.17:1), which a lighter sky blue does not.
+   */
+  --accent: #0369a1;
+  --accent-hover: #075985;
+  --accent-soft: #e0f2fe;
+  --accent-foreground: #ffffff;
+
+  /* Utility */
+  --ring: #0b5d3b;
+  --shadow-color: 150 25% 20%;
+
+  /*
+   * Chart colours — validated with the dataviz palette checker against the
+   * light surface (#f4f8f5): lightness band, CVD separation (ΔE 18.5 protan/
+   * deutan), normal-vision floor (ΔE 17.9) and 3:1 contrast all pass.
+   * This is the "emphasis" form: the frozen series carries the brand hue, the
+   * fresh series is a deliberate de-emphasis gray.
+   */
+  --chart-frozen: #0f7a4e;
+  --chart-fresh: #7f8fa3;
+
+  /* Flat section tints — no gradients, matching the restrained reference site. */
+  --hero-tint: #f2f8f4;
+  --brand-band: #0b5d3b;
+
+  /* Product tile tints */
+  --tile-green: #e8f4ec;
+  --tile-amber: #fdf3e0;
+  --tile-violet: #f2ecf8;
+  --tile-rose: #fdecef;
+}
+
+.dark {
+  /* Surfaces — deep slate-navy, reads as "cold" without being pure black */
+  --background: #0a1220;
+  --surface: #0f1829;
+  --surface-alt: #131f33;
+  --card: #101b2d;
+  --border: #1f2f45;
+  --border-strong: #2c405b;
+
+  /* Text */
+  --foreground: #e8eef4;
+  --muted-foreground: #a3b5c4;
+  --faint-foreground: #7e93a5;
+
+  /* Brand green — brightened so it passes contrast on a dark ground */
+  --primary: #34d399;
+  --primary-hover: #6ee7b7;
+  --primary-soft: #0f2e24;
+  --primary-foreground: #052e1d;
+
+  /* Frost blue */
+  --accent: #38bdf8;
+  --accent-hover: #7dd3fc;
+  --accent-soft: #0c2739;
+  --accent-foreground: #04202e;
+
+  --ring: #34d399;
+  --shadow-color: 210 60% 3%;
+
+  /*
+   * Dark-mode chart steps are SELECTED, not an automatic flip of the light
+   * values — re-validated against the dark surface (#0f1829): band, CVD
+   * (ΔE 17.1), normal-vision floor (ΔE 21.1) and contrast all pass.
+   */
+  --chart-frozen: #14ad7e;
+  --chart-fresh: #586675;
+
+  --hero-tint: #0d1728;
+  --brand-band: #0c3d2a;
+
+  --tile-green: #12261e;
+  --tile-amber: #2a2114;
+  --tile-violet: #221c2e;
+  --tile-rose: #2a1a1e;
+}
+
+/* ==========================================================================
+   TAILWIND THEME MAPPING
+   Exposes the variables above as Tailwind utilities: bg-background,
+   text-muted-foreground, border-border, etc.
+   ========================================================================== */
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-faint-foreground: var(--faint-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-ring: var(--ring);
+
+  --font-sans:
+    var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display:
+    var(--font-display), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-xl: 0.875rem;
+  --radius-2xl: 1.25rem;
+  --radius-3xl: 1.75rem;
+}
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Offset anchor targets so the sticky header never covers a heading. */
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    /*
+     * Safety net against accidental horizontal scroll.
+     *
+     * `clip` — NOT `hidden`. Setting `overflow-x: hidden` here forces the
+     * computed `overflow-y` to `auto`, which turns <body> into its own scroll
+     * container; window.scrollTo() then silently does nothing and the
+     * back-to-top button stops working. `clip` does not create a scroll
+     * container, so page scrolling keeps behaving normally.
+     */
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.022em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Visible, consistent focus ring for keyboard users on every interactive element. */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Themed text selection. */
+  ::selection {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  /* Themed scrollbar (WebKit). */
+  ::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--surface);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: 999px;
+    border: 3px solid var(--surface);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--muted-foreground);
+  }
+}
+
+/* ==========================================================================
+   COMPONENT UTILITIES
+   ========================================================================== */
+@layer utilities {
+  .bg-hero-tint {
+    background-color: var(--hero-tint);
+  }
+
+  .bg-brand-band {
+    background-color: var(--brand-band);
+  }
+
+  /* Product tile tints, selected by the `tint` field in lib/products.ts. */
+  .tile-green {
+    background-color: var(--tile-green);
+  }
+  .tile-amber {
+    background-color: var(--tile-amber);
+  }
+  .tile-violet {
+    background-color: var(--tile-violet);
+  }
+  .tile-rose {
+    background-color: var(--tile-rose);
+  }
+
+  /*
+   * Card elevation is deliberately light — a hairline ring plus a barely-there
+   * shadow, rather than the heavy drop shadows that make a site feel loud.
+   */
+  .shadow-soft {
+    box-shadow: 0 1px 2px hsl(var(--shadow-color) / 0.05);
+  }
+
+  .shadow-lift {
+    box-shadow: 0 2px 8px hsl(var(--shadow-color) / 0.08);
+  }
+}
+
+/* ==========================================================================
+   MOTION
+   Kept deliberately minimal: colour transitions on interactive elements and
+   smooth anchor scrolling. No scroll-reveal, no counters, no drifting
+   snowflakes — content is visible the moment the page loads.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

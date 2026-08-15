@@ -1,0 +1,68 @@
+name: Deploy to GitHub Pages
+
+# Builds the site and publishes it whenever you push to main.
+# You can also run it by hand from the Actions tab.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Permissions GitHub Pages needs to publish.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# If you push twice quickly, let the newer run finish and cancel the older one.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static site
+        env:
+          # Serves the site from https://<user>.github.io/<repo>/ correctly.
+          # `github.event.repository.name` keeps this right even if the repo is
+          # renamed, so there is no hard-coded path to forget about.
+          BASE_PATH: /${{ github.event.repository.name }}
+          # The contact form key. Add it under
+          # Settings -> Secrets and variables -> Actions -> New repository secret
+          # with the name NEXT_PUBLIC_WEB3FORMS_KEY. Until then the form falls
+          # back to mailto:, which is unreliable — see README.
+          NEXT_PUBLIC_WEB3FORMS_KEY: ${{ secrets.NEXT_PUBLIC_WEB3FORMS_KEY }}
+        run: npm run build
+
+      - name: Stop GitHub Pages mangling the output
+        # Without .nojekyll, Pages ignores every folder starting with an
+        # underscore — which includes Next.js's _next folder holding all the
+        # CSS and JavaScript. The site would load with no styling at all.
+        run: touch out/.nojekyll
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
