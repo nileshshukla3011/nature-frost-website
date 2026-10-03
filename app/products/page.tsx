@@ -36,9 +36,9 @@ export default function ProductsPage() {
 
       <PageHeader
         breadcrumb="Products"
-        eyebrow="Our Products"
-        title="Frozen fruits and vegetables, individually quick frozen"
-        description="Our portfolio is developed according to customer requirements, market demand and seasonal availability — if you need a cut, blend or pack size that is not listed, ask us."
+        eyebrow="Our Product Range"
+        title="IQF fruits and vegetables, ready for your business"
+        description="Browse by category or search for a product and cut. Need a custom blend or pack size? Share your specification and our team will help."
       />
 
       <Section>
@@ -54,7 +54,7 @@ export default function ProductsPage() {
         />
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {packFormats.map((format, i) => (
+          {packFormats.map((format) => (
             <Block key={format.title} className="h-full">
               <Card className="flex h-full flex-col">
                 <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-primary-soft text-primary">
@@ -66,7 +66,7 @@ export default function ProductsPage() {
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
                   {format.detail}
                 </p>
-                <p className="mt-4 border-t border-border pt-3 text-xs text-faint-foreground">
+                <p className="mt-4 border-t border-border pt-3 text-xs font-medium text-muted-foreground">
                   {format.audience}
                 </p>
               </Card>

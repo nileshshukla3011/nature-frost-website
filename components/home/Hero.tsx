@@ -1,4 +1,5 @@
 import { ArrowRight, Check, Landmark, Phone } from "lucide-react";
+import type { CSSProperties } from "react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { IconPanel } from "@/components/ui/IconPanel";
@@ -11,13 +12,22 @@ const trustPoints = [
   "Safe, Hygienic & Reliable",
 ];
 
+const publicBasePath = (process.env.BASE_PATH ?? "").replace(/\/$/, "");
+const heroBackground = {
+  "--hero-image": `url("${publicBasePath}/nature-frost-facility.jpeg")`,
+} as CSSProperties;
+
 export function Hero() {
   return (
-    <section id="home" className="border-b border-border bg-hero-tint">
+    <section
+      id="home"
+      className="border-b border-border bg-home-hero"
+      style={heroBackground}
+    >
       <Container className="py-16 sm:py-20 lg:py-24">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           {/* ---------- Copy ---------- */}
-          <div>
+          <div className="hero-copy">
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary-soft px-4 py-1.5 text-xs font-semibold text-primary">
               <Landmark className="h-3.5 w-3.5" />
               {site.government.shortCredit}

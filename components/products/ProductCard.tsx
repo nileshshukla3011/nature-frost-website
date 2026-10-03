@@ -23,7 +23,7 @@ export function ProductCard({ product }: { product: Product }) {
   return (
     <article
       id={product.slug}
-      className="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card transition-colors duration-200 hover:border-primary/40"
+      className="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all duration-200 hover:-translate-y-1 hover:border-primary/45 hover:shadow-lift"
     >
       <div
         className={cn(
@@ -62,13 +62,13 @@ export function ProductCard({ product }: { product: Product }) {
         </div>
 
         <div className="mt-4 flex items-center justify-between border-t border-border pt-4">
-          <span className="flex items-center gap-1.5 text-xs text-faint-foreground">
+          <span className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
             <CalendarDays className="h-3.5 w-3.5" />
             {product.season}
           </span>
           <Link
             href={`/contact?product=${product.slug}`}
-            className="inline-flex items-center gap-1 text-sm font-semibold text-primary transition-colors hover:text-primary-hover"
+            className="inline-flex min-h-10 items-center gap-1 rounded-full px-3 text-sm font-semibold text-primary transition-colors hover:bg-primary-soft hover:text-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
           >
             Enquire
             <ArrowUpRight className="h-3.5 w-3.5" />
