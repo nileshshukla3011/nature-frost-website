@@ -34,10 +34,9 @@ jobs:
 
       - name: Build static site
         env:
-          # Serves the site from https://<user>.github.io/<repo>/ correctly.
-          # `github.event.repository.name` keeps this right even if the repo is
-          # renamed, so there is no hard-coded path to forget about.
-          BASE_PATH: /${{ github.event.repository.name }}
+          # Leave CUSTOM_DOMAIN unset for the default project URL. Set it to
+          # the custom domain in repository Actions variables to serve at `/`.
+          BASE_PATH: ${{ vars.CUSTOM_DOMAIN == '' && format('/{0}', github.event.repository.name) || '' }}
           # The contact form key. Add it under
           # Settings -> Secrets and variables -> Actions -> New repository secret
           # with the name NEXT_PUBLIC_WEB3FORMS_KEY. Until then the form falls

@@ -236,6 +236,15 @@
    COMPONENT UTILITIES
    ========================================================================== */
 @layer utilities {
+  .footer-surface {
+    --primary: #34d399;
+    --primary-hover: #6ee7b7;
+    --primary-soft: #113b2b;
+    --primary-foreground: #052e1d;
+    background-color: #061711;
+    color: #f8fafc;
+  }
+
   .bg-hero-tint {
     background-color: var(--hero-tint);
   }
