@@ -21,10 +21,11 @@ export default function ContactPage() {
         breadcrumb="Contact Us"
         eyebrow="Partner With Nature Frost"
         title="Let's talk about your requirement"
-        description="Bulk requirements, product specifications, private-label opportunities, institutional supply, HoReCa requirements, distribution partnerships and export enquiries — all welcome."
+        description="Bulk supply, product specifications, private label and export enquiries—tell us what your business needs."
+        compact
       />
 
-      <Section>
+      <Section size="compact">
         <div className="grid gap-10 lg:grid-cols-5 lg:gap-12">
           {/* ---------- Form ---------- */}
           <div className="lg:col-span-3">

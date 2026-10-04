@@ -12,15 +12,21 @@ export function PageHeader({
   title,
   description,
   breadcrumb,
+  compact = false,
 }: {
   eyebrow?: string;
   title: string;
   description?: string;
   breadcrumb: string;
+  compact?: boolean;
 }) {
   return (
     <section className="border-b border-border bg-hero-tint">
-      <Container className="py-14 sm:py-16 lg:py-20">
+      <Container
+        className={
+          compact ? "py-8 sm:py-10 lg:py-12" : "py-14 sm:py-16 lg:py-20"
+        }
+      >
         <Block>
           <nav aria-label="Breadcrumb">
             <ol className="flex items-center gap-1.5 text-sm text-muted-foreground">
@@ -41,7 +47,9 @@ export function PageHeader({
 
         <Block>
           {eyebrow && (
-            <p className="mt-6 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+            <p
+              className={`${compact ? "mt-4" : "mt-6"} text-xs font-semibold uppercase tracking-[0.18em] text-primary`}
+            >
               {eyebrow}
             </p>
           )}
@@ -52,7 +60,9 @@ export function PageHeader({
 
         {description && (
           <Block>
-            <p className="mt-5 max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            <p
+              className={`${compact ? "mt-3" : "mt-5"} max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg`}
+            >
               {description}
             </p>
           </Block>
