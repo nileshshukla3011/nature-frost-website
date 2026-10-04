@@ -17,7 +17,7 @@ export const site = {
    * TODO(before launch): replace with the real domain once it is registered.
    * Used for canonical URLs, the sitemap and social share previews.
    */
-  url: "https://www.naturefrost.in",
+  url: "https://naturefrost.com",
 
   email: "Naturefrost25@gmail.com",
 
