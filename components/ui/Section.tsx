@@ -3,6 +3,17 @@ import { Container } from "./Container";
 import { Block } from "./Block";
 
 /**
+ * When a menu link jumps to a section, land so only ~1.5rem of the section's
+ * own top padding shows below the header — not the full padding, which left
+ * a large empty band above the heading. Each value is the padding minus 1.5rem.
+ */
+export const anchorOffset = {
+  compact: "-scroll-mt-6 sm:-scroll-mt-10",
+  default: "-scroll-mt-10 sm:-scroll-mt-14 lg:-scroll-mt-18",
+  large: "-scroll-mt-14 sm:-scroll-mt-22 lg:-scroll-mt-26",
+} as const;
+
+/**
  * A full-width page section with consistent vertical rhythm and an optional
  * tinted background. Keeps spacing uniform across all nine pages.
  */
@@ -34,6 +45,7 @@ export function Section({
         tone === "default" && "bg-background",
         tone === "surface" && "bg-surface",
         tone === "brand" && "bg-brand-band text-white",
+        id && anchorOffset[size],
         className,
       )}
     >

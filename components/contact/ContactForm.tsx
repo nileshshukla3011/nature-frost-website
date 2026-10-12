@@ -312,10 +312,10 @@ export function ContactForm() {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="rounded-3xl border border-border bg-card p-6 shadow-soft sm:p-8"
+      className="rounded-3xl border border-border bg-card p-5 shadow-soft sm:p-6"
     >
       <h2 className="text-xl font-bold text-foreground">Send us an enquiry</h2>
-      <p className="mt-1.5 text-sm text-muted-foreground">
+      <p className="mt-1 text-sm text-muted-foreground">
         Tell us what you need and we will come back to you with specifications
         and pricing.
       </p>
@@ -330,7 +330,7 @@ export function ContactForm() {
         aria-hidden="true"
       />
 
-      <div className="mt-6 grid gap-5 sm:grid-cols-2">
+      <div className="mt-5 grid gap-x-4 gap-y-3.5 sm:grid-cols-2">
         <Field
           label="Your name"
           name="name"
@@ -429,7 +429,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="mt-6 flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-soft transition-all duration-200 hover:bg-primary-hover   disabled:cursor-not-allowed disabled:opacity-60"
+        className="mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-soft transition-all duration-200 hover:bg-primary-hover   disabled:cursor-not-allowed disabled:opacity-60"
       >
         {status === "submitting" ? (
           <>
@@ -444,7 +444,7 @@ export function ContactForm() {
         )}
       </button>
 
-      <p className="mt-4 text-center text-xs leading-relaxed text-faint-foreground">
+      <p className="mt-2.5 text-center text-xs leading-relaxed text-faint-foreground">
         Your details are used only to respond to this enquiry. We never sell or
         share them.
       </p>
@@ -456,7 +456,7 @@ export function ContactForm() {
 
 const fieldClasses = (hasError?: boolean) =>
   cn(
-    "w-full rounded-xl border bg-background px-4 py-3 text-sm text-foreground transition-colors",
+    "w-full rounded-xl border bg-background px-4 py-2.5 text-sm text-foreground transition-colors",
     "placeholder:text-faint-foreground focus:outline-none focus:ring-2 focus:ring-ring/40",
     hasError ? "border-red-500/60" : "border-border focus:border-primary",
   );
@@ -490,7 +490,7 @@ function Field({
     <div>
       <label
         htmlFor={name}
-        className="mb-1.5 block text-sm font-medium text-foreground"
+        className="mb-1 block text-sm font-medium text-foreground"
       >
         {label}
         {required && (
@@ -504,7 +504,7 @@ function Field({
         <textarea
           id={name}
           name={name}
-          rows={5}
+          rows={3}
           value={value}
           required={required}
           placeholder={placeholder}
@@ -557,7 +557,7 @@ function SelectField({
     <div>
       <label
         htmlFor={name}
-        className="mb-1.5 block text-sm font-medium text-foreground"
+        className="mb-1 block text-sm font-medium text-foreground"
       >
         {label}
       </label>

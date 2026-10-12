@@ -173,7 +173,21 @@ export function Footer() {
               ))}
               <p className="flex items-start gap-3 pt-1 text-sm leading-relaxed text-white/60">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-emerald-300" />
-                <span>{formattedAddress()}</span>
+                <span>
+                  <span className="block font-semibold text-white/80">
+                    Factory
+                  </span>
+                  {formattedAddress()}
+                </span>
+              </p>
+              <p className="flex items-start gap-3 text-sm leading-relaxed text-white/60">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-emerald-300" />
+                <span>
+                  <span className="block font-semibold text-white/80">
+                    Office
+                  </span>
+                  {formattedAddress(site.office)}
+                </span>
               </p>
             </div>
 

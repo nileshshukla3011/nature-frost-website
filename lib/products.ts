@@ -5,9 +5,9 @@
  * homepage preview, the filter tabs and the contact-form product dropdown all
  * read from this array — no JSX edits required.
  *
- * Each product shows an emoji on a soft tinted tile rather than a photograph,
- * so the catalogue looks complete without any image files. To move to real
- * photography later, add an `image` field here and render it in ProductCard.
+ * Products with an `image` show that photo; the rest show an emoji on a soft
+ * tinted tile, so the catalogue looks complete while photography is added.
+ * Drop a photo in public/images/products/ and set `image` to switch one over.
  */
 
 export type ProductCategory = "vegetables" | "fruits";
@@ -22,8 +22,10 @@ export interface Product {
   formats: string[];
   /** Indicative harvest window for planning. */
   season: string;
-  /** Emoji shown on the product tile. */
+  /** Emoji shown on the product tile when there is no photo. */
   emoji: string;
+  /** Product photo under /public. Takes the place of the emoji when set. */
+  image?: string;
   /** Tile background tint. */
   tint: "green" | "amber" | "violet" | "rose";
   /** Shown as a small ribbon on the card. */
@@ -49,6 +51,7 @@ export const products: Product[] = [
     formats: ["Whole kernels", "Cob segments"],
     season: "Year-round supply",
     emoji: "🌽",
+    image: "/images/products/sweet-corn.webp",
     tint: "amber",
     featured: true,
   },
@@ -61,6 +64,7 @@ export const products: Product[] = [
     formats: ["Whole peas"],
     season: "Nov – Mar harvest",
     emoji: "🫛",
+    image: "/images/products/green-peas.webp",
     tint: "green",
     featured: true,
   },
@@ -107,6 +111,7 @@ export const products: Product[] = [
     formats: ["Florets", "Cuts"],
     season: "Oct – Mar harvest",
     emoji: "🥦",
+    image: "/images/products/broccoli.webp",
     tint: "green",
     featured: true,
   },
@@ -152,6 +157,7 @@ export const products: Product[] = [
     formats: ["Custom blends"],
     season: "Year-round supply",
     emoji: "🥗",
+    image: "/images/products/mixed-vegetables.webp",
     tint: "green",
     featured: true,
   },
@@ -188,6 +194,7 @@ export const products: Product[] = [
     formats: ["Dices", "Slices", "Pulp-grade cuts"],
     season: "By season",
     emoji: "🍓",
+    image: "/images/products/seasonal-fruits.webp",
     tint: "rose",
   },
   {
@@ -199,6 +206,7 @@ export const products: Product[] = [
     formats: ["To specification"],
     season: "On request",
     emoji: "🍊",
+    image: "/images/products/custom-fruit-products.webp",
     tint: "amber",
   },
 ];

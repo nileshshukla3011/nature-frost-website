@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight, CalendarDays } from "lucide-react";
 import { Badge } from "@/components/ui/Card";
-import { cn } from "@/lib/utils";
+import { asset, cn } from "@/lib/utils";
 import type { Product } from "@/lib/products";
 
 const tintClass = {
@@ -14,8 +14,8 @@ const tintClass = {
 /**
  * A single product tile.
  *
- * The visual is an emoji on a soft tinted panel rather than a photograph, so
- * the catalogue looks finished without any image files. The "Enquire" link
+ * The visual is the product photo when there is one, otherwise an emoji on a
+ * soft tinted panel, so the catalogue looks finished either way. The "Enquire" link
  * carries the product slug to the contact page, which pre-selects it in the
  * form — so every lead arrives already saying which product it is about.
  */
@@ -23,21 +23,31 @@ export function ProductCard({ product }: { product: Product }) {
   return (
     <article
       id={product.slug}
-      className="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all duration-200 hover:-translate-y-1 hover:border-primary/45 hover:shadow-lift"
+      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/45 hover:shadow-lift"
     >
       <div
         className={cn(
-          "relative flex aspect-[4/3] items-center justify-center",
+          "relative flex aspect-[4/3] items-center justify-center overflow-hidden",
           tintClass[product.tint],
         )}
       >
-        <span
-          className="text-6xl leading-none sm:text-7xl"
-          role="img"
-          aria-label={product.name}
-        >
-          {product.emoji}
-        </span>
+        {product.image ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={asset(product.image)}
+            alt={`Frozen ${product.name}`}
+            loading="lazy"
+            className="zoom-on-hover absolute inset-0 h-full w-full object-cover"
+          />
+        ) : (
+          <span
+            className="text-6xl leading-none transition-transform duration-500 group-hover:scale-110 sm:text-7xl"
+            role="img"
+            aria-label={product.name}
+          >
+            {product.emoji}
+          </span>
+        )}
         <div className="absolute left-3 top-3">
           <Badge tone={product.category === "fruits" ? "accent" : "primary"}>
             {product.category === "fruits" ? "Fruit" : "Vegetable"}

@@ -5,6 +5,12 @@ import { Button } from "@/components/ui/Button";
 import { ProductCard } from "@/components/products/ProductCard";
 import { featuredProducts, products } from "@/lib/products";
 
+/** Products with photos lead the preview; featured emoji tiles fill the rest. */
+const showcase = [
+  ...products.filter((p) => p.image),
+  ...featuredProducts.filter((p) => !p.image),
+].slice(0, 6);
+
 export function ProductPreview() {
   return (
     <Section id="products">
@@ -15,7 +21,7 @@ export function ProductPreview() {
       />
 
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {featuredProducts.slice(0, 6).map((product) => (
+        {showcase.map((product) => (
           <Block key={product.slug} className="h-full">
             <ProductCard product={product} />
           </Block>

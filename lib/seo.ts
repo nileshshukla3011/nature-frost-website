@@ -65,7 +65,9 @@ export function organizationJsonLd() {
     telephone: site.phones.map((p) => p.tel),
     address: {
       "@type": "PostalAddress",
-      streetAddress: site.address.line1,
+      streetAddress: [site.address.line1, site.address.line2]
+        .filter(Boolean)
+        .join(", "),
       addressLocality: site.address.city,
       addressRegion: site.address.state,
       postalCode: site.address.postalCode || undefined,

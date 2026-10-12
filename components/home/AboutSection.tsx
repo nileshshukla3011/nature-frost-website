@@ -1,8 +1,8 @@
 import { Eye, Target } from "lucide-react";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Card } from "@/components/ui/Card";
-import { IconPanel } from "@/components/ui/IconPanel";
 import { site } from "@/lib/site";
+import { asset } from "@/lib/utils";
 
 const missionPoints = [
   "Build strong farmer and supplier relationships",
@@ -23,34 +23,41 @@ export function AboutSection() {
         description="A frozen fruits and vegetables processing company focused on consistent quality, food safety and year-round availability of premium agricultural produce."
       />
 
-      <div className="mt-12 grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
-        <div className="grid gap-4 sm:grid-cols-2">
-          <IconPanel
-            icon="Factory"
-            label="Processing Facility"
-            sublabel="Modern IQF line in Bihar, India"
-            aspect="1/1"
+      {/*
+        Bento layout. Desktop: the factory photo fills the left at full
+        height; the copy and the two product photos share the right, so the
+        whole block fits one screen. Phones: photo → copy → product photos.
+      */}
+      <div className="mt-8 grid gap-4 sm:gap-5 lg:grid-cols-12 lg:grid-rows-[auto_auto] lg:gap-5">
+        <figure className="group relative aspect-[4/3] overflow-hidden rounded-3xl border border-border sm:aspect-[16/10] lg:col-span-7 lg:row-span-2 lg:aspect-auto lg:min-h-[27rem]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={asset("/nature-frost-facility.jpeg")}
+            alt="The Nature Frost processing facility"
+            loading="lazy"
+            className="zoom-on-hover absolute inset-0 h-full w-full object-cover object-[62%_55%]"
           />
-          <IconPanel
-            icon="Thermometer"
-            label="Cold Storage"
-            sublabel="Finished goods held at −18°C or lower"
-            tone="ice"
-            aspect="1/1"
-          />
-        </div>
+          <figcaption className="absolute inset-x-3 bottom-3 flex items-end justify-between gap-3 rounded-2xl bg-[#04120c]/75 px-4 py-3 text-white backdrop-blur-md sm:inset-x-4 sm:bottom-4 sm:px-5">
+            <span>
+              <span className="block text-sm font-semibold sm:text-base">
+                Processing Facility
+              </span>
+              <span className="block text-xs text-white/75 sm:text-sm">
+                Shree Kangan Food Park, Begusarai, Bihar
+              </span>
+            </span>
+            <span className="hidden shrink-0 rounded-full bg-emerald-400/20 px-3 py-1 text-xs font-semibold text-emerald-200 sm:inline">
+              3 MT / hour IQF
+            </span>
+          </figcaption>
+        </figure>
 
-        <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
+        <div className="space-y-3.5 text-base leading-relaxed text-muted-foreground lg:col-span-5 lg:text-[0.9375rem]">
           <p>
-            Nature Frost is a frozen fruits and vegetables processing company
-            focused on delivering consistent quality, food safety and year-round
-            availability of premium agricultural produce.
-          </p>
-          <p>
-            Located in Bihar, India, we operate a modern frozen fruits and
-            vegetables processing facility serving food businesses,
-            institutional buyers, modern retail, HoReCa and distribution
-            markets.
+            Located at Shree Kangan Food Park in Begusarai, Bihar, Nature Frost
+            is being developed as a modern frozen fruits and vegetables
+            processing facility serving food businesses, institutional buyers,
+            modern retail, HoReCa and distribution markets.
           </p>
           <p>
             We combine carefully selected farm-fresh produce with modern
@@ -62,14 +69,43 @@ export function AboutSection() {
             goodness of fruits and vegetables.
           </p>
 
-          <div className="rounded-2xl border border-primary/25 bg-primary-soft p-5">
-            <p className="font-display text-lg font-semibold leading-snug text-foreground">
+          <div className="rounded-2xl border border-primary/25 bg-primary-soft px-5 py-4">
+            <p className="font-display text-base font-semibold leading-snug text-foreground sm:text-lg">
               We don&rsquo;t just freeze food — we preserve goodness.
             </p>
-            <p className="mt-1.5 text-sm text-muted-foreground">
-              {site.tagline}
-            </p>
+            <p className="mt-1 text-sm text-muted-foreground">{site.tagline}</p>
           </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-4 sm:gap-5 lg:col-span-5 lg:self-end">
+          {[
+            {
+              src: "/images/products/frozen-vegetable-medley.webp",
+              alt: "Individually quick frozen vegetables",
+              label: "Frozen Vegetables",
+            },
+            {
+              src: "/images/products/frozen-berries.webp",
+              alt: "Individually quick frozen fruits and berries",
+              label: "Frozen Fruits",
+            },
+          ].map((photo) => (
+            <figure
+              key={photo.src}
+              className="group relative aspect-[4/3] overflow-hidden rounded-2xl border border-border lg:aspect-[16/10]"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={asset(photo.src)}
+                alt={photo.alt}
+                loading="lazy"
+                className="zoom-on-hover h-full w-full object-cover"
+              />
+              <figcaption className="absolute bottom-2.5 left-2.5 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-[#0b5d3b] backdrop-blur sm:bottom-3 sm:left-3">
+                {photo.label}
+              </figcaption>
+            </figure>
+          ))}
         </div>
       </div>
 

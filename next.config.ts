@@ -26,6 +26,10 @@ const nextConfig: NextConfig = {
 
   basePath: basePath || undefined,
   assetPrefix: basePath || undefined,
+
+  // Exposed to the browser bundle so `asset()` in lib/utils can prefix plain
+  // <img> and file URLs the same way Next prefixes <Link> routes.
+  env: { NEXT_PUBLIC_BASE_PATH: basePath },
 };
 
 export default nextConfig;

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, Phone, X } from "lucide-react";
+import { FileDown, Menu, Phone, X } from "lucide-react";
 import { navigation, site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { Logo } from "./Logo";
@@ -14,8 +14,18 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Nav links minus "Contact", which becomes the header's call-to-action button.
-  const links = navigation.filter((item) => item.href !== "/contact");
+  /*
+   * Desktop links. Contact and Brochure become buttons on the right, Home is
+   * the logo, and Sustainability stays in the drawer and footer — the full
+   * list does not fit on one line at 1280px.
+   */
+  const desktopHidden = new Set([
+    "/",
+    "/contact",
+    "/brochure",
+    "/#sustainability",
+  ]);
+  const links = navigation.filter((item) => !desktopHidden.has(item.href));
 
   /**
    * Only real routes get an active state. Most nav entries are anchors into
@@ -86,7 +96,7 @@ export function Header() {
             <Logo />
           </div>
 
-          {/* Desktop navigation — 8 links only fit comfortably at xl and up. */}
+          {/* Desktop navigation — 7 links only fit comfortably at xl and up. */}
           <nav
             className="hidden items-center gap-1 xl:flex"
             aria-label="Primary"
@@ -97,7 +107,7 @@ export function Header() {
                 href={item.href}
                 aria-current={isActive(item.href) ? "page" : undefined}
                 className={cn(
-                  "relative rounded-full px-3.5 py-2 text-sm font-medium transition-colors duration-200",
+                  "relative rounded-full px-3 py-2 text-sm font-medium transition-colors duration-200",
                   isActive(item.href)
                     ? "text-primary"
                     : "text-muted-foreground hover:text-foreground",
@@ -105,7 +115,7 @@ export function Header() {
               >
                 {item.label}
                 {isActive(item.href) && (
-                  <span className="absolute inset-x-3.5 -bottom-0.5 h-0.5 rounded-full bg-primary" />
+                  <span className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-primary" />
                 )}
               </Link>
             ))}
@@ -113,6 +123,20 @@ export function Header() {
 
           <div className="flex items-center gap-2 sm:gap-3">
             <ThemeToggle className="hidden sm:flex" />
+
+            <Link
+              href="/brochure"
+              aria-current={isActive("/brochure") ? "page" : undefined}
+              className={cn(
+                "hidden items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-semibold transition-colors duration-200 md:inline-flex",
+                isActive("/brochure")
+                  ? "border-primary bg-primary-soft text-primary"
+                  : "border-border-strong text-foreground hover:border-primary hover:text-primary",
+              )}
+            >
+              <FileDown className="h-4 w-4" strokeWidth={2.2} />
+              Brochure
+            </Link>
 
             <Link
               href="/contact"

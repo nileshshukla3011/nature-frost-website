@@ -1,6 +1,7 @@
 import { buildMetadata } from "@/lib/seo";
 import { Hero } from "@/components/home/Hero";
 import { StatsBand } from "@/components/home/StatsBand";
+import { ClientsSection } from "@/components/home/ClientsSection";
 import { AboutSection } from "@/components/home/AboutSection";
 import { MofpiBand } from "@/components/home/MofpiBand";
 import { TechnologySection } from "@/components/home/TechnologySection";
@@ -11,13 +12,14 @@ import { QualitySection } from "@/components/home/QualitySection";
 import { InfrastructureSection } from "@/components/home/InfrastructureSection";
 import { SustainabilitySection } from "@/components/home/SustainabilitySection";
 import { MarketsGrid } from "@/components/home/MarketsGrid";
+import { BrochureSection } from "@/components/home/BrochureSection";
 import { WhyNatureFrost } from "@/components/home/WhyNatureFrost";
 import { CTABand } from "@/components/home/CTABand";
 
 export const metadata = buildMetadata({
   title: "Nature Frost — Premium IQF Frozen Fruits & Vegetables from India",
   description:
-    "Nature Frost processes premium IQF frozen fruits and vegetables in Bihar, India, with 3 MT/hour capacity. Supplying HoReCa, food manufacturers, modern retail, distributors and export markets.",
+    "Nature Frost processes premium IQF frozen fruits and vegetables at Shree Kangan Food Park, Begusarai, Bihar, with 3 MT/hour capacity. Supplying HoReCa, food manufacturers, modern retail, distributors and export markets.",
   path: "/",
   keywords: [
     "IQF frozen vegetables India",
@@ -37,6 +39,7 @@ export default function HomePage() {
     <>
       <Hero />
       <StatsBand />
+      <ClientsSection />
       <AboutSection />
       <MofpiBand />
       <TechnologySection />
@@ -49,6 +52,7 @@ export default function HomePage() {
       {/* Benefits shown in full, and no CTA — the old CTA linked to a separate
           Markets page that is now this very section. */}
       <MarketsGrid showBenefits showCta={false} />
+      <BrochureSection />
       <WhyNatureFrost />
       <CTABand />
     </>

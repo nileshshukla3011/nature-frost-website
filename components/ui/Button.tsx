@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-type Variant = "primary" | "secondary" | "outline" | "ghost" | "white";
+type Variant =
+  "primary" | "secondary" | "outline" | "ghost" | "white" | "glow" | "glass";
 type Size = "sm" | "md" | "lg";
 
 const base =
@@ -17,6 +18,10 @@ const variants: Record<Variant, string> = {
   ghost: "text-foreground hover:bg-surface-alt",
   // For use on the dark brand gradient.
   white: "bg-white text-[#0b5d3b] hover:bg-white/90 ",
+  // For use on the dark photo hero, in both themes.
+  glow: "bg-emerald-400 text-emerald-950 shadow-lg shadow-emerald-500/25 hover:bg-emerald-300",
+  glass:
+    "border border-white/30 bg-white/10 text-white backdrop-blur-md hover:bg-white/20",
 };
 
 const sizes: Record<Size, string> = {

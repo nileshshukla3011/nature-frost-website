@@ -13,10 +13,7 @@ export const site = {
   shortDescription:
     "Premium IQF frozen fruits and vegetables from India, processed with modern technology to preserve freshness, quality and convenience.",
 
-  /**
-   * TODO(before launch): replace with the real domain once it is registered.
-   * Used for canonical URLs, the sitemap and social share previews.
-   */
+  /** Canonical domain. Used for canonical URLs, the sitemap and share previews. */
   url: "https://naturefrost.com",
 
   email: "Naturefrost25@gmail.com",
@@ -36,6 +33,11 @@ export const site = {
       tel: "+917368801602",
       whatsapp: "917368801602",
     },
+    {
+      display: "+91 91550 11111",
+      tel: "+919155011111",
+      whatsapp: "919155011111",
+    },
   ],
 
   /** The number the floating WhatsApp button dials. */
@@ -46,20 +48,55 @@ export const site = {
   },
 
   /**
-   * TODO(before launch): replace with the exact plant/office address in Bihar.
-   * This feeds the footer, the contact page and the LocalBusiness structured
-   * data that lets Google show your location in search results.
+   * The processing plant. Feeds the footer, the contact page, the map and the
+   * LocalBusiness structured data that lets Google show the location.
    */
   address: {
-    line1: "Nature Frost Processing Facility",
-    line2: "",
-    city: "Bihar",
+    line1: "Plot No. 10, Shree Kangan Food Park",
+    line2: "Agapur, Mansurchak, Teghra",
+    city: "Begusarai",
     state: "Bihar",
     postalCode: "",
     country: "India",
     countryCode: "IN",
-    /** Google Maps embed query. Swap for the precise address or coordinates. */
-    mapQuery: "Bihar, India",
+    /** Google Maps embed query. Swap for coordinates if the pin is off. */
+    mapQuery: "Shree Kangan Food Park, Teghra, Begusarai, Bihar",
+  },
+
+  /** Corporate office, shown alongside the plant address. */
+  office: {
+    line1: "Krishna Niwas, A-98, Road No. 4",
+    line2: "Magistrate Colony",
+    city: "Patna",
+    state: "Bihar",
+    postalCode: "800025",
+    country: "India",
+  },
+
+  /** Named contacts from the company brochure. */
+  people: [
+    {
+      name: "S.K. Bhardwaj",
+      honorific: "Retd. I.P.S.",
+      role: "Chairman",
+      phone: { display: "+91 91550 11111", tel: "+919155011111" },
+    },
+    {
+      name: "Shishir Kumar",
+      role: "Chief Executive Officer",
+      phone: { display: "+91 73688 01602", tel: "+917368801602" },
+    },
+  ] as {
+    name: string;
+    honorific?: string;
+    role: string;
+    phone: { display: string; tel: string };
+  }[],
+
+  /** The downloadable company brochure, served from /public. */
+  brochure: {
+    file: "/brochure/nature-frost-brochure.pdf",
+    pages: 5,
   },
 
   businessHours: "Monday – Saturday, 9:00 AM – 6:00 PM IST",
@@ -112,11 +149,13 @@ export const navigation = [
   { label: "Infrastructure", href: "/#infrastructure" },
   { label: "Sustainability", href: "/#sustainability" },
   { label: "Markets", href: "/#markets" },
+  { label: "Clients", href: "/#clients" },
+  { label: "Brochure", href: "/brochure" },
   { label: "Contact", href: "/contact" },
 ] as const;
 
 /** Only the routes that exist as real pages — used to build the sitemap. */
-export const pageRoutes = ["/", "/products", "/contact"] as const;
+export const pageRoutes = ["/", "/products", "/brochure", "/contact"] as const;
 
 /** Builds a WhatsApp deep link with an optional pre-filled message. */
 export function whatsappLink(message: string = site.whatsapp.prefillMessage) {
@@ -124,8 +163,17 @@ export function whatsappLink(message: string = site.whatsapp.prefillMessage) {
 }
 
 /** Formats the address into a single human-readable line. */
-export function formattedAddress() {
-  const { line1, line2, city, state, postalCode, country } = site.address;
+export function formattedAddress(
+  address: {
+    line1: string;
+    line2: string;
+    city: string;
+    state: string;
+    postalCode: string;
+    country: string;
+  } = site.address,
+) {
+  const { line1, line2, city, state, postalCode, country } = address;
   return [line1, line2, city, state !== city ? state : "", postalCode, country]
     .filter(Boolean)
     .join(", ");

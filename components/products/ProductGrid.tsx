@@ -42,9 +42,7 @@ export function ProductGrid() {
 
   return (
     <div>
-      <div
-        className="flex flex-col gap-4 rounded-3xl border border-border bg-card p-4 shadow-soft sm:flex-row sm:items-center sm:justify-between sm:p-5"
-      >
+      <div className="flex flex-col gap-4 rounded-3xl border border-border bg-card p-4 shadow-soft sm:flex-row sm:items-center sm:justify-between sm:p-5">
         <label className="relative block sm:w-72 sm:shrink-0">
           <span className="sr-only">Search products</span>
           <Search

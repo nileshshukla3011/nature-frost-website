@@ -30,37 +30,41 @@ npm run serve   # preview that folder at http://localhost:3000
 
 **One long home page, plus two standalone pages.**
 
-| URL | What it is |
-|---|---|
-| `/` | Everything about the company, as sections you scroll through |
-| `/products` | The full 14-product catalogue with category filters |
-| `/contact` | The enquiry form and contact details |
+| URL         | What it is                                                   |
+| ----------- | ------------------------------------------------------------ |
+| `/`         | Everything about the company, as sections you scroll through |
+| `/products` | The full 14-product catalogue with category filters          |
+| `/brochure` | The company brochure, page by page, with a PDF download      |
+| `/contact`  | The enquiry form and contact details                         |
 
 The menu items About, Technology, Quality, Infrastructure, Sustainability and
 Markets are **jump links** to sections of the home page (`/#about`,
 `/#quality`, and so on) — not separate pages. Products and Contact are real
 pages of their own, because those are the two that attract search traffic.
 
-Home page section order: Hero → key figures → About (vision & mission) →
+Home page section order: Hero → key figures → Clients → About (vision & mission) →
 MoFPI support → Technology (IQF, five stages, temperature chart) → Products
 preview → Farm to Freezer steps → Why Frozen → Quality → Infrastructure →
-Sustainability → Markets → Why Nature Frost → Contact call-to-action.
+Sustainability → Markets → Brochure → Why Nature Frost → Contact call-to-action.
 
 ## Design
 
 Deliberately restrained, following the style of the earlier `Nilesh_Website`
 reference project:
 
-- **No animation.** No falling snowflakes, no fade-in-on-scroll, no counting
-  numbers. Content is visible the instant the page loads. The only motion is a
-  colour change on hover and smooth scrolling to anchors.
-- **Flat colour, no gradients.** Solid tinted section bands rather than
-  gradient washes.
+- **Photo-led hero.** The facility photo fills the top of the home page behind
+  a dark fade, so the headline never sits on top of the building's lettering.
+- **Little animation.** No falling snowflakes, no fade-in-on-scroll, no
+  counting numbers. Content is visible the instant the page loads. Motion is
+  limited to hover effects (colour, a small lift, photo zoom) and smooth
+  scrolling, and is switched off for visitors who ask for reduced motion.
+- **Flat colour sections.** Solid tinted section bands; gradients are used
+  only for the hero fade and its headline accent.
 - **Light by default.** The site always opens in light mode, even if the
   visitor's computer is set to dark. Dark mode is opt-in via the sun/moon
   button in the header, and the choice is remembered on that device.
-- **Product pictures are emoji on soft tinted tiles** — the same approach the
-  reference site uses. Nothing to upload, nothing that can break.
+- **Product pictures** are real photos where the brochure had one, and emoji
+  on soft tinted tiles for the rest.
 
 ---
 
@@ -89,14 +93,15 @@ working substitute.
 
 ### 2. Fill in the real details
 
-Open **`lib/site.ts`** — every phone number, email, address and business hour on
-the entire site comes from that one file. Look for the `TODO` comments:
+Open **`lib/site.ts`** — every phone number, email, address, contact person and
+business hour on the entire site comes from that one file. The domain, plant
+and office addresses and contact persons are filled in from the brochure. Still
+open:
 
-| What | Why it matters |
-|---|---|
-| `url` | Your real domain. Used for Google indexing and link previews. |
-| `address` | The exact plant address. Shows in the footer, contact page and Google's business listing data. |
-| `social` | Add profile links and the icons appear in the footer automatically. Leave blank to hide. |
+| What                 | Why it matters                                                                           |
+| -------------------- | ---------------------------------------------------------------------------------------- |
+| `social`             | Add profile links and the icons appear in the footer automatically. Leave blank to hide. |
+| `address.postalCode` | The plant's PIN code is not in the brochure.                                             |
 
 ### 3. Certifications
 
@@ -111,7 +116,7 @@ The MoFPI / PMKSY credit appears in the footer, hero and About section. Per the
 note in the source corporate profile, **confirm these against the official
 sanction letter and MoFPI branding permissions before publishing.**
 
-The site uses a plain text credit and a generic institution icon — *not* the
+The site uses a plain text credit and a generic institution icon — _not_ the
 State Emblem of India or the Ashoka Lion, which are legally restricted and must
 not be used by a private company.
 
@@ -122,6 +127,7 @@ not be used by a private company.
 Any of these work. **Netlify is the easiest** if you are not a developer.
 
 **Netlify (drag and drop)**
+
 1. Run `npm run build`
 2. Go to https://app.netlify.com/drop
 3. Drag the `out` folder onto the page — it goes live immediately
@@ -136,28 +142,25 @@ inside `out/` into `public_html/` by FTP.
 
 ## Making common changes
 
-| I want to… | Edit this |
-|---|---|
-| Change a phone number, email or address | `lib/site.ts` |
-| Add or edit a product | `lib/products.ts` — add one entry to the array |
-| Change a product's picture | The `emoji` field in `lib/products.ts` |
-| Change the processing steps | `lib/process.ts` |
-| Change marketing copy, markets, quality points | `lib/content.ts` |
-| Reorder the home page sections | `app/page.tsx` |
-| Change the menu | `lib/site.ts` → `navigation` |
-| Change the brand colours | `app/globals.css` — the `:root` and `.dark` blocks at the top |
-| Replace the logo | `components/layout/Logo.tsx` |
+| I want to…                                     | Edit this                                                                                                                                         |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Change a phone number, email or address        | `lib/site.ts`                                                                                                                                     |
+| Add or edit a product                          | `lib/products.ts` — add one entry to the array                                                                                                    |
+| Change a product's picture                     | Put a photo in `public/images/products/` and set the `image` field in `lib/products.ts` (or the `emoji` field if there is no photo)               |
+| Add or change a client                         | `lib/clients.ts` — logo files go in `public/images/clients/`                                                                                      |
+| Replace the brochure                           | Overwrite `public/brochure/nature-frost-brochure.pdf`, re-export its pages as images into `public/images/brochure/`, and update `lib/brochure.ts` |
+| Change the processing steps                    | `lib/process.ts`                                                                                                                                  |
+| Change marketing copy, markets, quality points | `lib/content.ts`                                                                                                                                  |
+| Reorder the home page sections                 | `app/page.tsx`                                                                                                                                    |
+| Change the menu                                | `lib/site.ts` → `navigation`                                                                                                                      |
+| Change the brand colours                       | `app/globals.css` — the `:root` and `.dark` blocks at the top                                                                                     |
+| Replace the logo                               | `public/images/brand/nature-frost-mark.png` (used by `components/layout/Logo.tsx`)                                                                |
 
-### If you later want real photographs
+### Images
 
-There are no image files in the project at the moment — every visual is either
-an emoji tile, an icon panel or a drawn chart, so nothing can appear broken.
-
-To introduce photography later: create a `public/images/` folder, drop your
-compressed JPGs in (aim for under 200 KB each, via squoosh.app), then replace
-an `<IconPanel …/>` with `<img src="/images/your-photo.jpg" alt="…" />`. For
-products, add an `image` field in `lib/products.ts` and render it in
-`components/products/ProductCard.tsx` in place of the emoji.
+Every image lives in `public/` and is referenced through `asset()` in
+`lib/utils.ts`, which keeps paths working when the site is served from a
+GitHub Pages sub-path. Keep new photos under ~200 KB (WebP via squoosh.app).
 
 ---
 
@@ -177,7 +180,9 @@ components/
   contact/        The enquiry form
   technology/     The temperature chart
 lib/              All text, data and settings — no design code here
-public/           favicon
+public/
+  images/         Brand mark, product photos, client logos, brochure pages
+  brochure/       The downloadable brochure PDF
 ```
 
 ---
