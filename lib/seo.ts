@@ -20,7 +20,10 @@ export function buildMetadata({
   const fullTitle = path === "/" ? title : `${title} | ${site.name}`;
 
   return {
-    title: fullTitle,
+    // The tab title gets "| Nature Frost" from the template in app/layout.tsx,
+    // so pass the bare page name here — adding it again doubled the suffix.
+    // The home title is already complete, so it opts out of the template.
+    title: path === "/" ? { absolute: title } : title,
     description,
     keywords: [
       "IQF frozen vegetables",
