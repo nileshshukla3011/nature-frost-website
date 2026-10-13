@@ -13,7 +13,7 @@ const showcase = [
 
 export function ProductPreview() {
   return (
-    <Section id="products">
+    <Section id="products" tone="surface">
       <SectionHeading
         eyebrow="Our Products"
         title="Individually quick frozen, ready when you are"

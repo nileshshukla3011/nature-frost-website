@@ -35,8 +35,14 @@ export const metadata: Metadata = {
   publisher: site.name,
   robots: { index: true, follow: true },
   icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-    apple: "/favicon.svg",
+    // Nature Frost leaf-and-snowflake mark on a white tile, so it stays
+    // visible on dark browser tab bars. Generated from
+    // public/images/brand/nature-frost-mark.png.
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/icon.png", type: "image/png", sizes: "192x192" },
+    ],
+    apple: { url: "/apple-touch-icon.png", sizes: "180x180" },
   },
   /*
    * Auto-detection OFF. Left on, iOS Safari turns number-like body text

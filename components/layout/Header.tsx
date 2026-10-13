@@ -15,16 +15,10 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   /*
-   * Desktop links. Contact and Brochure become buttons on the right, Home is
-   * the logo, and Sustainability stays in the drawer and footer — the full
-   * list does not fit on one line at 1280px.
+   * Desktop links, in the same order as the home page sections. Contact and
+   * Brochure are buttons on the right, and Home is the logo.
    */
-  const desktopHidden = new Set([
-    "/",
-    "/contact",
-    "/brochure",
-    "/#sustainability",
-  ]);
+  const desktopHidden = new Set(["/", "/contact", "/brochure"]);
   const links = navigation.filter((item) => !desktopHidden.has(item.href));
 
   /**
@@ -96,9 +90,9 @@ export function Header() {
             <Logo />
           </div>
 
-          {/* Desktop navigation — 7 links only fit comfortably at xl and up. */}
+          {/* Desktop navigation — 8 links only fit comfortably at xl and up. */}
           <nav
-            className="hidden items-center gap-1 xl:flex"
+            className="hidden items-center gap-0.5 xl:flex 2xl:gap-1"
             aria-label="Primary"
           >
             {links.map((item) => (
@@ -107,7 +101,7 @@ export function Header() {
                 href={item.href}
                 aria-current={isActive(item.href) ? "page" : undefined}
                 className={cn(
-                  "relative rounded-full px-3 py-2 text-sm font-medium transition-colors duration-200",
+                  "relative rounded-full px-2.5 py-2 text-sm font-medium transition-colors duration-200 2xl:px-3",
                   isActive(item.href)
                     ? "text-primary"
                     : "text-muted-foreground hover:text-foreground",
@@ -115,7 +109,7 @@ export function Header() {
               >
                 {item.label}
                 {isActive(item.href) && (
-                  <span className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-primary" />
+                  <span className="absolute inset-x-2.5 -bottom-0.5 h-0.5 rounded-full bg-primary 2xl:inset-x-3" />
                 )}
               </Link>
             ))}

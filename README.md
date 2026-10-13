@@ -42,10 +42,11 @@ Markets are **jump links** to sections of the home page (`/#about`,
 `/#quality`, and so on) — not separate pages. Products and Contact are real
 pages of their own, because those are the two that attract search traffic.
 
-Home page section order: Hero → key figures → Clients → About (vision & mission) →
-MoFPI support → Technology (IQF, five stages, temperature chart) → Products
-preview → Farm to Freezer steps → Why Frozen → Quality → Infrastructure →
-Sustainability → Markets → Brochure → Why Nature Frost → Contact call-to-action.
+Home page section order follows the menu: Hero → key figures → Clients →
+About (vision & mission) → MoFPI support → Technology (IQF, five stages,
+temperature chart) → Farm to Freezer steps → Why Frozen → Products preview →
+Quality → Infrastructure → Sustainability → Markets → Brochure → Why Nature
+Frost → Contact call-to-action.
 
 ## Design
 
@@ -142,19 +143,19 @@ inside `out/` into `public_html/` by FTP.
 
 ## Making common changes
 
-| I want to…                                     | Edit this                                                                                                                                         |
-| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Change a phone number, email or address        | `lib/site.ts`                                                                                                                                     |
-| Add or edit a product                          | `lib/products.ts` — add one entry to the array                                                                                                    |
-| Change a product's picture                     | Put a photo in `public/images/products/` and set the `image` field in `lib/products.ts` (or the `emoji` field if there is no photo)               |
-| Add or change a client                         | `lib/clients.ts` — logo files go in `public/images/clients/`                                                                                      |
-| Replace the brochure                           | Overwrite `public/brochure/nature-frost-brochure.pdf`, re-export its pages as images into `public/images/brochure/`, and update `lib/brochure.ts` |
-| Change the processing steps                    | `lib/process.ts`                                                                                                                                  |
-| Change marketing copy, markets, quality points | `lib/content.ts`                                                                                                                                  |
-| Reorder the home page sections                 | `app/page.tsx`                                                                                                                                    |
-| Change the menu                                | `lib/site.ts` → `navigation`                                                                                                                      |
-| Change the brand colours                       | `app/globals.css` — the `:root` and `.dark` blocks at the top                                                                                     |
-| Replace the logo                               | `public/images/brand/nature-frost-mark.png` (used by `components/layout/Logo.tsx`)                                                                |
+| I want to…                                     | Edit this                                                                                                                                                               |
+| ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Change a phone number, email or address        | `lib/site.ts`                                                                                                                                                           |
+| Add or edit a product                          | `lib/products.ts` — add one entry to the array                                                                                                                          |
+| Change a product's picture                     | Put a photo in `public/images/products/` and set the `image` field in `lib/products.ts` (or the `emoji` field if there is no photo)                                     |
+| Add or change a client                         | `lib/clients.ts` — logo files go in `public/images/clients/`                                                                                                            |
+| Replace the brochure                           | Overwrite `public/brochure/nature-frost-brochure.pdf`, re-export its pages as images into `public/images/brochure/`, and update `lib/brochure.ts`                       |
+| Change the processing steps                    | `lib/process.ts`                                                                                                                                                        |
+| Change marketing copy, markets, quality points | `lib/content.ts`                                                                                                                                                        |
+| Reorder the home page sections                 | `app/page.tsx`                                                                                                                                                          |
+| Change the menu                                | `lib/site.ts` → `navigation`                                                                                                                                            |
+| Change the brand colours                       | `app/globals.css` — the `:root` and `.dark` blocks at the top                                                                                                           |
+| Replace the logo                               | `public/images/brand/nature-frost-mark.png` (used by `components/layout/Logo.tsx`), then regenerate `public/favicon.ico`, `icon.png` and `apple-touch-icon.png` from it |
 
 ### Images
 

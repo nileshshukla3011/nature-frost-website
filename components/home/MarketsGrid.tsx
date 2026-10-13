@@ -14,7 +14,7 @@ export function MarketsGrid({
   showCta?: boolean;
 }) {
   return (
-    <Section id="markets">
+    <Section id="markets" tone="surface">
       <SectionHeading
         eyebrow="Markets We Serve"
         title="One production line, six kinds of customer"

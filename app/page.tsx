@@ -42,10 +42,12 @@ export default function HomePage() {
       <ClientsSection />
       <AboutSection />
       <MofpiBand />
+      {/* Sections follow the menu order. Farm to Freezer and Why Frozen
+          belong to the Technology story, so they come before Products. */}
       <TechnologySection />
-      <ProductPreview />
       <ProcessTimeline />
       <WhyFrozen />
+      <ProductPreview />
       <QualitySection />
       <InfrastructureSection />
       <SustainabilitySection />
