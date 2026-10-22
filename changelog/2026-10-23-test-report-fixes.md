@@ -25,7 +25,8 @@ the website code. Items that need DNS, email or a backend are listed at the end.
 - **Tap targets at least 24 px tall** (NF-031, WCAG 2.2): product card titles,
   breadcrumbs, the email link in the call-to-action band, FAQ "read more"
   links, "See all products" in the footer, contact page phone and FAQ links,
-  and the email link after a form fallback.
+  the "How IQF works" link on product pages, and the email link after a form
+  fallback.
 - "Get in Touch" in the header wrapped onto two lines on screens 1536 px and
   wider.
 

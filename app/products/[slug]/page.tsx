@@ -167,7 +167,7 @@ export default async function ProductPage({ params }: Props) {
                   −18°C or lower through storage and transport.{" "}
                   <Link
                     href="/technology"
-                    className="font-semibold text-primary underline-offset-4 hover:underline"
+                    className="inline-flex min-h-6 items-center font-semibold text-primary underline-offset-4 hover:underline"
                   >
                     How IQF works
                   </Link>
