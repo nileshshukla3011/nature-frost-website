@@ -206,7 +206,7 @@ export default async function ProductPage({ params }: Props) {
               Need the technical specification?{" "}
               <Link
                 href={`/contact?product=${product.slug}&enquiry=spec`}
-                className="font-semibold text-primary underline-offset-4 hover:underline"
+                className="inline-flex min-h-6 items-center font-semibold text-primary underline-offset-4 hover:underline"
               >
                 Request a spec sheet
               </Link>
