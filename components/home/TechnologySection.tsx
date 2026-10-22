@@ -53,8 +53,14 @@ export function TechnologySection() {
             </ul>
           </div>
 
-          {/* Comparison table */}
-          <div className="overflow-x-auto rounded-2xl border border-border">
+          {/* Comparison table. It scrolls sideways on phones, so it takes
+              keyboard focus to be scrollable without a mouse or touch. */}
+          <div
+            className="overflow-x-auto rounded-2xl border border-border focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+            tabIndex={0}
+            role="region"
+            aria-label="Bulk freezing compared with IQF"
+          >
             <table className="w-full min-w-lg border-collapse bg-card text-left">
               <caption className="sr-only">
                 Comparison of conventional bulk freezing and individual quick

@@ -133,7 +133,7 @@ export function Footer() {
               {products.map((product) => (
                 <li key={product.slug}>
                   <Link
-                    href={`/products/#${product.slug}`}
+                    href={`/products/${product.slug}`}
                     className="inline-flex min-h-6 items-center text-sm text-white/70 transition-colors hover:text-emerald-200 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-200"
                   >
                     {product.name}

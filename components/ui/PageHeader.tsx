@@ -5,19 +5,22 @@ import { Block } from "./Block";
 
 /**
  * Standard hero band for inner pages: breadcrumb, eyebrow, title, intro.
- * Used by all eight non-home pages so they open consistently.
+ * Used by the inner pages so they open consistently.
  */
 export function PageHeader({
   eyebrow,
   title,
   description,
   breadcrumb,
+  parent,
   compact = false,
 }: {
   eyebrow?: string;
   title: string;
   description?: string;
   breadcrumb: string;
+  /** An extra breadcrumb level between Home and this page, e.g. Products. */
+  parent?: { label: string; href: string };
   compact?: boolean;
 }) {
   return (
@@ -38,6 +41,21 @@ export function PageHeader({
               <li aria-hidden="true">
                 <ChevronRight className="h-3.5 w-3.5" />
               </li>
+              {parent && (
+                <>
+                  <li>
+                    <Link
+                      href={parent.href}
+                      className="transition-colors hover:text-primary"
+                    >
+                      {parent.label}
+                    </Link>
+                  </li>
+                  <li aria-hidden="true">
+                    <ChevronRight className="h-3.5 w-3.5" />
+                  </li>
+                </>
+              )}
               <li className="font-medium text-foreground" aria-current="page">
                 {breadcrumb}
               </li>

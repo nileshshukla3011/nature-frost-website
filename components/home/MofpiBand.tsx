@@ -49,7 +49,7 @@ export function MofpiBand() {
             <p className="mt-4 text-base leading-relaxed text-white/85">
               With a{" "}
               <strong className="font-semibold text-white">
-                3 MT/hour IQF processing capacity
+                planned 3 MT/hour IQF processing capacity
               </strong>
               , Nature Frost aims to transform quality Indian fruits and
               vegetables into high-quality frozen products for customers across

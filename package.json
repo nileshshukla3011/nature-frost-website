@@ -2,7 +2,7 @@
   "name": "nature-frost-website",
   "version": "1.0.0",
   "private": true,
-  "description": "Nature Frost \u00e2\u20ac\u201d Premium IQF Frozen Fruits & Vegetables from India",
+  "description": "Nature Frost — Premium IQF Frozen Fruits & Vegetables from India",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "lucide-react": "^0.545.0",
-    "next": "^16.3.1",
+    "next": "^16.4.2",
     "next-themes": "^0.4.6",
     "react": "19.1.1",
     "react-dom": "19.1.1"

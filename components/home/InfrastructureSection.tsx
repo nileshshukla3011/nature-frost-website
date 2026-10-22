@@ -8,8 +8,8 @@ export function InfrastructureSection() {
     <Section tone="surface" id="infrastructure">
       <SectionHeading
         eyebrow="Our Infrastructure"
-        title="3 MT per hour of IQF processing capacity"
-        description="An IQF processing capacity of approximately 3 tonnes per hour means we can absorb a full harvest window at peak season and still hold consistent output for contract supply through the rest of the year."
+        title="Designed for 3 MT per hour of IQF processing"
+        description="A planned IQF processing capacity of approximately 3 tonnes per hour is sized to absorb a full harvest window at peak season and still hold consistent output for contract supply through the rest of the year."
       />
 
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

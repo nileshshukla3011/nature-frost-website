@@ -47,7 +47,7 @@ export function AboutSection() {
               </span>
             </span>
             <span className="hidden shrink-0 rounded-full bg-emerald-400/20 px-3 py-1 text-xs font-semibold text-emerald-200 sm:inline">
-              3 MT / hour IQF
+              Planned 3 MT / hour IQF
             </span>
           </figcaption>
         </figure>

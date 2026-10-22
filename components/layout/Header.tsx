@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FileDown, Menu, Phone, X } from "lucide-react";
@@ -13,6 +13,8 @@ export function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   /*
    * Desktop links, in the same order as the home page sections. Contact and
@@ -44,7 +46,12 @@ export function Header() {
   // Close the drawer whenever the route changes.
   useEffect(() => setMenuOpen(false), [pathname]);
 
-  // While the drawer is open: lock background scrolling and allow Esc to close.
+  /*
+   * While the drawer is open: lock background scrolling, allow Esc to close,
+   * and move focus into the drawer, handing it back to the menu button when
+   * it closes. preventScroll stops the browser from scrolling the clipped
+   * wrapper to reach the still-sliding panel, which would leave it offset.
+   */
   useEffect(() => {
     if (!menuOpen) return;
 
@@ -56,9 +63,13 @@ export function Header() {
     document.body.style.overflow = "hidden";
     document.addEventListener("keydown", onKeyDown);
 
+    const menuButton = menuButtonRef.current;
+    closeButtonRef.current?.focus({ preventScroll: true });
+
     return () => {
       document.body.style.overflow = previousOverflow;
       document.removeEventListener("keydown", onKeyDown);
+      menuButton?.focus({ preventScroll: true });
     };
   }, [menuOpen]);
 
@@ -141,6 +152,7 @@ export function Header() {
             </Link>
 
             <button
+              ref={menuButtonRef}
               type="button"
               onClick={() => setMenuOpen(true)}
               aria-label="Open menu"
@@ -165,7 +177,9 @@ export function Header() {
           "fixed inset-0 z-60 overflow-hidden xl:hidden",
           menuOpen ? "pointer-events-auto" : "pointer-events-none",
         )}
-        aria-hidden={!menuOpen}
+        // Inert while closed: hidden from screen readers and out of the Tab
+        // order, so keyboard focus can never land in the off-screen panel.
+        inert={!menuOpen}
       >
         <div
           className={cn(
@@ -188,6 +202,7 @@ export function Header() {
           <div className="flex items-center justify-between border-b border-border px-5 py-4">
             <Logo />
             <button
+              ref={closeButtonRef}
               type="button"
               onClick={() => setMenuOpen(false)}
               aria-label="Close menu"

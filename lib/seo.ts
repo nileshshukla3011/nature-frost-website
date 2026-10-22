@@ -2,6 +2,17 @@ import type { Metadata } from "next";
 import { site, formattedAddress } from "./site";
 
 /**
+ * The link-preview card shown when a page is shared on WhatsApp, LinkedIn,
+ * X and the like. 1200×630, in public/.
+ */
+const shareImage = {
+  url: "/og-image.jpg",
+  width: 1200,
+  height: 630,
+  alt: `${site.name} — premium IQF frozen fruits and vegetables from India`,
+};
+
+/**
  * Shared metadata builder. Every page calls this so titles, canonical URLs and
  * social share cards stay consistent without repeating boilerplate.
  */
@@ -41,11 +52,13 @@ export function buildMetadata({
       description,
       url,
       locale: "en_IN",
+      images: [shareImage],
     },
     twitter: {
       card: "summary_large_image",
       title: fullTitle,
       description,
+      images: [shareImage.url],
     },
   };
 }
@@ -66,6 +79,12 @@ export function organizationJsonLd() {
     email: site.email,
     slogan: site.tagline,
     telephone: site.phones.map((p) => p.tel),
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: site.openingHours.days,
+      opens: site.openingHours.opens,
+      closes: site.openingHours.closes,
+    },
     address: {
       "@type": "PostalAddress",
       streetAddress: [site.address.line1, site.address.line2]
@@ -90,10 +109,13 @@ export function organizationJsonLd() {
   };
 }
 
-/** Product catalogue structured data for the products page. */
-export function productCatalogJsonLd(
-  items: { name: string; description: string; slug: string }[],
-) {
+/**
+ * Product catalogue structured data for the products page: a plain list of
+ * links to the product pages. Deliberately not schema.org `Product` items —
+ * Google requires a price, review or rating on those and reports every
+ * product without one as an error in Search Console.
+ */
+export function productCatalogJsonLd(items: { name: string; slug: string }[]) {
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -101,37 +123,35 @@ export function productCatalogJsonLd(
     itemListElement: items.map((item, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      item: {
-        "@type": "Product",
-        name: item.name,
-        description: item.description,
-        url: `${site.url}/products/#${item.slug}`,
-        brand: { "@type": "Brand", name: site.name },
-      },
+      name: item.name,
+      url: absoluteUrl(`/products/${item.slug}`),
     })),
   };
 }
 
-/** Breadcrumb structured data for inner pages. */
-export function breadcrumbJsonLd(label: string, path: string) {
+/**
+ * Breadcrumb structured data for inner pages. `trail` is every level below
+ * Home, e.g. [{ name: "Products", path: "/products" }, { name: "Sweet Corn",
+ * path: "/products/sweet-corn" }].
+ */
+export function breadcrumbJsonLd(trail: { name: string; path: string }[]) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: [
-      {
+    itemListElement: [{ name: "Home", path: "/" }, ...trail].map(
+      (crumb, index) => ({
         "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: site.url,
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: label,
-        item: `${site.url}${path}`,
-      },
-    ],
+        position: index + 1,
+        name: crumb.name,
+        item: absoluteUrl(crumb.path),
+      }),
+    ),
   };
+}
+
+/** Full URL of a page, with the trailing slash the static export serves. */
+function absoluteUrl(path: string) {
+  return path === "/" ? `${site.url}/` : `${site.url}${path}/`;
 }
 
 export { formattedAddress };

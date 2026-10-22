@@ -4,13 +4,13 @@
  * the process infographic — nothing here is invented.
  */
 
-/** Headline numbers shown in the animated stats band. */
+/** Headline numbers shown in the stats band. */
 export const keyStats = [
   {
     value: 3,
     suffix: " MT",
     prefix: "",
-    label: "IQF capacity per hour",
+    label: "Planned IQF capacity per hour",
     decimals: 0,
   },
   {

@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/Card";
 import { asset, cn } from "@/lib/utils";
 import type { Product } from "@/lib/products";
 
-const tintClass = {
+export const tintClass = {
   green: "tile-green",
   amber: "tile-amber",
   violet: "tile-violet",
@@ -12,7 +12,8 @@ const tintClass = {
 } as const;
 
 /**
- * A single product tile.
+ * A single product tile. The name links to the product's own page, and the
+ * whole card is clickable through it.
  *
  * The visual is the product photo when there is one, otherwise an emoji on a
  * soft tinted panel, so the catalogue looks finished either way. The "Enquire" link
@@ -23,7 +24,7 @@ export function ProductCard({ product }: { product: Product }) {
   return (
     <article
       id={product.slug}
-      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/45 hover:shadow-lift"
+      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/45 hover:shadow-lift"
     >
       <div
         className={cn(
@@ -57,7 +58,14 @@ export function ProductCard({ product }: { product: Product }) {
 
       <div className="flex flex-1 flex-col p-5">
         <h3 className="text-lg font-semibold text-foreground">
-          {product.name}
+          {/* Stretched link: its ::after covers the card, so a click anywhere
+              opens the product page. The Enquire link sits above it. */}
+          <Link
+            href={`/products/${product.slug}`}
+            className="rounded-sm transition-colors after:absolute after:inset-0 after:content-[''] hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+          >
+            {product.name}
+          </Link>
         </h3>
         <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
           {product.description}
@@ -78,7 +86,7 @@ export function ProductCard({ product }: { product: Product }) {
           </span>
           <Link
             href={`/contact?product=${product.slug}`}
-            className="inline-flex min-h-10 items-center gap-1 rounded-full px-3 text-sm font-semibold text-primary transition-colors hover:bg-primary-soft hover:text-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+            className="relative z-10 inline-flex min-h-10 items-center gap-1 rounded-full px-3 text-sm font-semibold text-primary transition-colors hover:bg-primary-soft hover:text-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
           >
             Enquire
             <ArrowUpRight className="h-3.5 w-3.5" />

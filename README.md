@@ -28,25 +28,30 @@ npm run serve   # preview that folder at http://localhost:3000
 
 ## How the site is organised
 
-**One long home page, plus two standalone pages.**
+**A short home page, plus a page for each kind of detail.**
 
-| URL         | What it is                                                   |
-| ----------- | ------------------------------------------------------------ |
-| `/`         | Everything about the company, as sections you scroll through |
-| `/products` | The full 14-product catalogue with category filters          |
-| `/brochure` | The company brochure, page by page, with a PDF download      |
-| `/contact`  | The enquiry form and contact details                         |
+| URL                   | What it is                                                                                |
+| --------------------- | ----------------------------------------------------------------------------------------- |
+| `/`                   | Who we are, what we make and who we serve                                                 |
+| `/products`           | The full 14-product catalogue with category filters                                       |
+| `/products/<product>` | One page per product, e.g. `/products/sweet-corn`, built from `lib/products.ts`           |
+| `/technology`         | IQF explained, the five processing stages, temperature chart, farm-to-freezer, why frozen |
+| `/facility`           | Quality checks, infrastructure and sustainability                                         |
+| `/brochure`           | The company brochure, page by page, with a PDF download                                   |
+| `/contact`            | The enquiry form and contact details                                                      |
 
-The menu items About, Technology, Quality, Infrastructure, Sustainability and
-Markets are **jump links** to sections of the home page (`/#about`,
-`/#quality`, and so on) — not separate pages. Products and Contact are real
-pages of their own, because those are the two that attract search traffic.
+The menu items About, Markets and Clients are **jump links** to sections of
+the home page (`/#about`, …). Technology, Products, Brochure and Contact are
+pages of their own, and Quality, Infrastructure and Sustainability jump to
+sections of the facility page (`/facility#quality`, …). Every product has its
+own page so it can be found by searches such as "frozen sweet corn supplier".
 
-Home page section order follows the menu: Hero → key figures → Clients →
-About (vision & mission) → MoFPI support → Technology (IQF, five stages,
-temperature chart) → Farm to Freezer steps → Why Frozen → Products preview →
-Quality → Infrastructure → Sustainability → Markets → Brochure → Why Nature
-Frost → Contact call-to-action.
+Home page section order: Hero → key figures → Clients → About (vision &
+mission) → MoFPI support → Products preview → How We Work (cards linking to
+the technology and facility pages) → Markets → Brochure → Why Nature Frost →
+Contact call-to-action. How We Work keeps the old `#technology`, `#quality`,
+`#infrastructure` and `#sustainability` anchors, so older links still land on
+the home page in the right place.
 
 ## Design
 
@@ -146,7 +151,7 @@ inside `out/` into `public_html/` by FTP.
 | I want to…                                     | Edit this                                                                                                                                                               |
 | ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Change a phone number, email or address        | `lib/site.ts`                                                                                                                                                           |
-| Add or edit a product                          | `lib/products.ts` — add one entry to the array                                                                                                                          |
+| Add or edit a product                          | `lib/products.ts` — add one entry to the array. Its own page, catalogue card, footer link and sitemap entry follow automatically                                        |
 | Change a product's picture                     | Put a photo in `public/images/products/` and set the `image` field in `lib/products.ts` (or the `emoji` field if there is no photo)                                     |
 | Add or change a client                         | `lib/clients.ts` — logo files go in `public/images/clients/`                                                                                                            |
 | Replace the brochure                           | Overwrite `public/brochure/nature-frost-brochure.pdf`, re-export its pages as images into `public/images/brochure/`, and update `lib/brochure.ts`                       |
@@ -155,13 +160,15 @@ inside `out/` into `public_html/` by FTP.
 | Reorder the home page sections                 | `app/page.tsx`                                                                                                                                                          |
 | Change the menu                                | `lib/site.ts` → `navigation`                                                                                                                                            |
 | Change the brand colours                       | `app/globals.css` — the `:root` and `.dark` blocks at the top                                                                                                           |
+| Change the link-preview picture                | `public/og-image.jpg` (1200×630) — shown when a page is shared on WhatsApp, LinkedIn or X                                                                               |
 | Replace the logo                               | `public/images/brand/nature-frost-mark.png` (used by `components/layout/Logo.tsx`), then regenerate `public/favicon.ico`, `icon.png` and `apple-touch-icon.png` from it |
 
 ### Images
 
 Every image lives in `public/` and is referenced through `asset()` in
 `lib/utils.ts`, which keeps paths working when the site is served from a
-GitHub Pages sub-path. Keep new photos under ~200 KB (WebP via squoosh.app).
+GitHub Pages sub-path. Keep new photos under ~200 KB (WebP via squoosh.app),
+and the brochure PDF under ~3 MB so it downloads quickly on mobile data.
 
 ---
 
@@ -169,8 +176,11 @@ GitHub Pages sub-path. Keep new photos under ~200 KB (WebP via squoosh.app).
 
 ```
 app/
-  page.tsx        The whole home page — just a list of sections
-  products/       Product catalogue page
+  page.tsx        The home page — just a list of sections
+  products/       Product catalogue page; [slug]/ is each product's own page
+  technology/     IQF technology page
+  facility/       Quality, infrastructure and sustainability page
+  brochure/       Brochure page
   contact/        Enquiry form page
   globals.css     Colours and base styles
 components/
@@ -190,10 +200,16 @@ public/
 
 ## Quality checks this site passes
 
+Last checked 2026-10-22:
+
 - Production build clean, TypeScript clean, 0 npm vulnerabilities
-- **Zero accessibility violations** (axe, WCAG 2.1 AA) on all three pages in
-  both light and dark mode
-- No horizontal scrolling at 360 / 390 / 768 / 1024 px
+- **Zero accessibility violations** (axe, WCAG 2.1 AA and best practices) on
+  every page type — home, catalogue, a product page, technology, facility,
+  brochure and contact — at 1440 px and 390 px, in light and dark mode
+- Keyboard: the closed phone menu is out of the Tab order; opening it moves
+  focus inside, and closing returns focus to the menu button
+- No horizontal scrolling at 360 / 390 / 768 / 1024 / 1440 px
+- No broken internal links in the built site
 - Renders fully with JavaScript disabled
 - Charts use colours validated for colour-blind readability and 3:1 contrast in
   both themes

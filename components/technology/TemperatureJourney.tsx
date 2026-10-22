@@ -86,8 +86,14 @@ export function TemperatureJourney() {
         the product is held at through it.
       </p>
 
-      {/* Wide chart scrolls inside its own container instead of squashing. */}
-      <div className="mt-6 -mx-1 overflow-x-auto px-1">
+      {/* Wide chart scrolls inside its own container instead of squashing;
+          focusable so keyboard users can scroll it too. */}
+      <div
+        className="mt-6 -mx-1 overflow-x-auto px-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+        tabIndex={0}
+        role="region"
+        aria-label="Temperature journey chart"
+      >
         <svg
           viewBox={`0 0 ${VB_W} ${VB_H}`}
           className="h-auto w-full min-w-lg"

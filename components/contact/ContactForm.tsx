@@ -59,7 +59,7 @@ export function ContactForm() {
 
   /**
    * Pre-fills the form from the URL, e.g. /contact?product=sweet-corn from a
-   * product card, or ?enquiry=spec from the brochure button.
+   * product card, or ?enquiry=spec from a "Request a Spec Sheet" button.
    *
    * Read from window rather than useSearchParams so the page can be fully
    * static-prerendered without a Suspense boundary.
@@ -82,7 +82,7 @@ export function ContactForm() {
         next.enquiryType = "Product Specification Request";
         if (!matched) {
           next.message =
-            "Please send me the Nature Frost product brochure and specification sheet.";
+            "Please send me the specification sheets for your frozen fruits and vegetables.";
         }
       }
 

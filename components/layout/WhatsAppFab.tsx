@@ -21,7 +21,8 @@ function WhatsAppIcon({ className }: { className?: string }) {
 
 /**
  * Floating action buttons: WhatsApp enquiry (always visible) and back-to-top
- * (appears once the visitor has scrolled a screen or so).
+ * (appears once the visitor has scrolled a screen or so). Wrapped in an
+ * <aside> landmark so screen readers can find them like any other region.
  */
 export function WhatsAppFab() {
   const [showTop, setShowTop] = useState(false);
@@ -34,7 +35,10 @@ export function WhatsAppFab() {
   }, []);
 
   return (
-    <div className="fixed bottom-5 right-5 z-40 flex flex-col items-end gap-3 sm:bottom-7 sm:right-7">
+    <aside
+      aria-label="Quick contact"
+      className="fixed bottom-5 right-5 z-40 flex flex-col items-end gap-3 sm:bottom-7 sm:right-7"
+    >
       <button
         type="button"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
@@ -61,6 +65,6 @@ export function WhatsAppFab() {
           Chat with us
         </span>
       </a>
-    </div>
+    </aside>
   );
 }

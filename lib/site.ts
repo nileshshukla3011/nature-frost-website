@@ -101,6 +101,13 @@ export const site = {
 
   businessHours: "Monday – Saturday, 9:00 AM – 6:00 PM IST",
 
+  /** The same hours in the machine-readable form search engines read. */
+  openingHours: {
+    days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    opens: "09:00",
+    closes: "18:00",
+  },
+
   /**
    * TODO(optional): add real profile URLs and they appear in the footer
    * automatically. Leave a value empty and that icon is hidden.
@@ -136,18 +143,19 @@ export const site = {
 /**
  * Primary navigation, shared by the header, mobile drawer and footer.
  *
- * Most entries are anchors into sections of the single-page home route.
- * Products and Contact are real pages of their own — they are the two that
- * attract search traffic and need their own titles and descriptions.
+ * About, Markets and Clients are anchors into sections of the home page.
+ * Products, Technology, Brochure and Contact are pages of their own, and
+ * Quality, Infrastructure and Sustainability are sections of the facility
+ * page — each one can have its own title and description for search.
  */
 export const navigation = [
   { label: "Home", href: "/" },
   { label: "About", href: "/#about" },
-  { label: "Technology", href: "/#technology" },
+  { label: "Technology", href: "/technology" },
   { label: "Products", href: "/products" },
-  { label: "Quality", href: "/#quality" },
-  { label: "Infrastructure", href: "/#infrastructure" },
-  { label: "Sustainability", href: "/#sustainability" },
+  { label: "Quality", href: "/facility#quality" },
+  { label: "Infrastructure", href: "/facility#infrastructure" },
+  { label: "Sustainability", href: "/facility#sustainability" },
   { label: "Markets", href: "/#markets" },
   { label: "Clients", href: "/#clients" },
   { label: "Brochure", href: "/brochure" },
@@ -155,7 +163,14 @@ export const navigation = [
 ] as const;
 
 /** Only the routes that exist as real pages — used to build the sitemap. */
-export const pageRoutes = ["/", "/products", "/brochure", "/contact"] as const;
+export const pageRoutes = [
+  "/",
+  "/products",
+  "/technology",
+  "/facility",
+  "/brochure",
+  "/contact",
+] as const;
 
 /** Builds a WhatsApp deep link with an optional pre-filled message. */
 export function whatsappLink(message: string = site.whatsapp.prefillMessage) {

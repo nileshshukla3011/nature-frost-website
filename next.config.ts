@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 /*
  * GitHub Pages serves a project repo from a sub-path, e.g.
- *   https://shikhar0110.github.io/webiste/
+ *   https://<username>.github.io/<repository>/
  * Without basePath every CSS/JS/link URL points at the domain root and 404s,
  * so the site loads completely unstyled.
  *

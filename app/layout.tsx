@@ -56,12 +56,10 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  // Matches the light/dark page background so the mobile browser chrome
-  // blends with the site instead of flashing white.
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a1220" },
-  ],
+  // The site opens in light mode whatever the device setting (dark mode is
+  // opt-in), so the browser bar matches the light page. A separate dark entry
+  // gave phones in dark mode a navy bar above a white page.
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({
@@ -85,15 +83,6 @@ export default function RootLayout({
             __html: JSON.stringify(organizationJsonLd()),
           }}
         />
-
-        {/*
-          Scroll-reveal starts elements at opacity 0 and a script reveals them.
-          With JavaScript unavailable that script never runs, which would leave
-          the entire site blank. This makes every section visible instead.
-        */}
-        <noscript>
-          <style>{`.reveal{opacity:1 !important;transform:none !important}`}</style>
-        </noscript>
       </head>
       <body className="min-h-screen bg-background font-sans text-foreground antialiased">
         <ThemeProvider>
