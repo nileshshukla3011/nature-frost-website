@@ -51,7 +51,7 @@ export default function ContactPage() {
                 <li>
                   <Link
                     href="/"
-                    className="transition-colors hover:text-primary"
+                    className="inline-flex min-h-6 items-center transition-colors hover:text-primary"
                   >
                     Home
                   </Link>
@@ -78,7 +78,7 @@ export default function ContactPage() {
               Quick question?{" "}
               <Link
                 href="/faq"
-                className="font-semibold text-primary underline-offset-4 hover:underline"
+                className="inline-flex min-h-6 items-center font-semibold text-primary underline-offset-4 hover:underline"
               >
                 See the FAQ
               </Link>
@@ -120,7 +120,7 @@ export default function ContactPage() {
                     {/* Phones: the number sits under the name instead. */}
                     <a
                       href={`tel:${person.phone.tel}`}
-                      className="mt-1 inline-flex items-center gap-1.5 text-sm font-semibold text-foreground sm:hidden"
+                      className="mt-1 inline-flex min-h-6 items-center gap-1.5 text-sm font-semibold text-foreground sm:hidden"
                     >
                       <Phone className="h-3.5 w-3.5 text-primary" />
                       {person.phone.display}

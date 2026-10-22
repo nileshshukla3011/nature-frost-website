@@ -62,7 +62,7 @@ export function ProductCard({ product }: { product: Product }) {
               opens the product page. The Enquire link sits above it. */}
           <Link
             href={`/products/${product.slug}`}
-            className="rounded-sm transition-colors after:absolute after:inset-0 after:content-[''] hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+            className="inline-flex min-h-6 items-center rounded-sm transition-colors after:absolute after:inset-0 after:content-[''] hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
           >
             {product.name}
           </Link>

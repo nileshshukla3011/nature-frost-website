@@ -217,6 +217,8 @@ components/
   contact/        The enquiry form
   technology/     The temperature chart
 lib/              All text, data and settings — no design code here
+scripts/
+  add-csp.mjs     Adds the Content-Security-Policy to every built page
 public/
   images/         Brand mark, product photos, client logos, brochure pages
   brochure/       The downloadable brochure PDF
@@ -238,6 +240,11 @@ Last checked 2026-10-22:
 - No broken internal links in the built site
 - Lighthouse SEO 100 on the home, FAQ, product and technology pages
 - Renders fully with JavaScript disabled
+- Content-Security-Policy on every page (built by `scripts/add-csp.mjs`
+  after `npm run build`), referrer policy, and a guard that hides the site if
+  another site loads it in a frame. GitHub Pages cannot send real security
+  headers (HSTS, X-Frame-Options, X-Content-Type-Options); those need
+  Cloudflare in front of the site
 - Charts use colours validated for colour-blind readability and 3:1 contrast in
   both themes
 - SEO: per-page titles and descriptions, `sitemap.xml`, `robots.txt`, and

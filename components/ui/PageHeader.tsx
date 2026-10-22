@@ -34,7 +34,10 @@ export function PageHeader({
           <nav aria-label="Breadcrumb">
             <ol className="flex items-center gap-1.5 text-sm text-muted-foreground">
               <li>
-                <Link href="/" className="transition-colors hover:text-primary">
+                <Link
+                  href="/"
+                  className="inline-flex min-h-6 items-center transition-colors hover:text-primary"
+                >
                   Home
                 </Link>
               </li>
@@ -46,7 +49,7 @@ export function PageHeader({
                   <li>
                     <Link
                       href={parent.href}
-                      className="transition-colors hover:text-primary"
+                      className="inline-flex min-h-6 items-center transition-colors hover:text-primary"
                     >
                       {parent.label}
                     </Link>

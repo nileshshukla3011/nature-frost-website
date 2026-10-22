@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "node scripts/add-csp.mjs",
     "start": "next start",
     "serve": "npx serve out",
     "format": "prettier --write ."

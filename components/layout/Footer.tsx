@@ -143,7 +143,7 @@ export function Footer() {
             </ul>
             <Link
               href="/products"
-              className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-300 transition-colors hover:text-emerald-200"
+              className="mt-5 inline-flex min-h-6 items-center gap-1.5 text-sm font-semibold text-emerald-300 transition-colors hover:text-emerald-200"
             >
               See all products <ArrowUpRight className="h-4 w-4" />
             </Link>

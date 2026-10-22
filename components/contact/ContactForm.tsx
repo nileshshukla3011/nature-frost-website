@@ -267,7 +267,7 @@ export function ContactForm() {
 
           <a
             href={`mailto:${site.email}`}
-            className="block text-center text-sm font-medium text-muted-foreground underline-offset-4 transition-colors hover:text-primary hover:underline"
+            className="block py-0.5 text-center text-sm font-medium text-muted-foreground underline-offset-4 transition-colors hover:text-primary hover:underline"
           >
             {site.email}
           </a>

@@ -17,11 +17,10 @@ export function Header() {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   /*
-   * Desktop links, in the same order as the home page sections. Contact and
-   * Brochure are buttons on the right, Home is the logo, and FAQ is in the
-   * phone menu and the footer.
+   * Desktop links, in the same order as the phone menu. Contact and Brochure
+   * are buttons on the right, and Home is the logo.
    */
-  const desktopHidden = new Set(["/", "/contact", "/brochure", "/faq"]);
+  const desktopHidden = new Set(["/", "/contact", "/brochure"]);
   const links = navigation.filter((item) => !desktopHidden.has(item.href));
 
   /**
@@ -102,9 +101,9 @@ export function Header() {
             <Logo />
           </div>
 
-          {/* Desktop navigation — 8 links only fit comfortably at xl and up. */}
+          {/* Desktop navigation — 9 links only fit comfortably at xl and up. */}
           <nav
-            className="hidden items-center gap-0.5 xl:flex 2xl:gap-1"
+            className="hidden items-center gap-0.5 xl:flex"
             aria-label="Primary"
           >
             {links.map((item) => (
@@ -113,7 +112,7 @@ export function Header() {
                 href={item.href}
                 aria-current={isActive(item.href) ? "page" : undefined}
                 className={cn(
-                  "relative rounded-full px-2.5 py-2 text-sm font-medium transition-colors duration-200 2xl:px-3",
+                  "relative rounded-full px-2 py-2 text-sm font-medium transition-colors duration-200",
                   isActive(item.href)
                     ? "text-primary"
                     : "text-muted-foreground hover:text-foreground",
@@ -121,7 +120,7 @@ export function Header() {
               >
                 {item.label}
                 {isActive(item.href) && (
-                  <span className="absolute inset-x-2.5 -bottom-0.5 h-0.5 rounded-full bg-primary 2xl:inset-x-3" />
+                  <span className="absolute inset-x-2 -bottom-0.5 h-0.5 rounded-full bg-primary" />
                 )}
               </Link>
             ))}
@@ -134,7 +133,7 @@ export function Header() {
               href="/brochure"
               aria-current={isActive("/brochure") ? "page" : undefined}
               className={cn(
-                "hidden items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-semibold transition-colors duration-200 md:inline-flex",
+                "hidden items-center whitespace-nowrap gap-2 rounded-full border px-4 py-2.5 text-sm font-semibold transition-colors duration-200 md:inline-flex",
                 isActive("/brochure")
                   ? "border-primary bg-primary-soft text-primary"
                   : "border-border-strong text-foreground hover:border-primary hover:text-primary",
@@ -146,7 +145,7 @@ export function Header() {
 
             <Link
               href="/contact"
-              className="hidden items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-soft transition-all duration-200 hover:bg-primary-hover   lg:inline-flex"
+              className="hidden items-center whitespace-nowrap gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-soft transition-all duration-200 hover:bg-primary-hover   lg:inline-flex"
             >
               <Phone className="h-4 w-4" strokeWidth={2.2} />
               Get in Touch

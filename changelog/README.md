@@ -3,17 +3,18 @@
 A record of changes to the Nature Frost website, newest first. Each release
 has its own file in this folder.
 
-| Date | Release | Summary |
-|---|---|---|
-| 2026-10-22 | [Search engine improvements](2026-10-22-seo.md) | FAQ page, keyword titles, product uses, richer structured data, faster hero image, Search Console set-up |
+| Date       | Release                                                                         | Summary                                                                                                                  |
+| ---------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| 2026-10-23 | [Test report fixes](2026-10-23-test-report-fixes.md)                            | FAQ in the desktop menu, bigger tap targets, Content-Security-Policy, clickjacking guard, smaller brochure               |
+| 2026-10-22 | [Search engine improvements](2026-10-22-seo.md)                                 | FAQ page, keyword titles, product uses, richer structured data, faster hero image, Search Console set-up                 |
 | 2026-10-22 | [Shorter home page, product pages and review fixes](2026-10-22-review-fixes.md) | Technology and facility pages, a page per product, link-preview image, accessibility and SEO fixes, smaller brochure PDF |
-| 2026-10-13 | [Nature Frost favicon](2026-10-13-favicon.md) | Logo favicon for browser tabs and phone home screens |
-| 2026-10-13 | [Menu and home page in the same order](2026-10-13-section-order.md) | Sections follow the menu; Sustainability back in the desktop menu |
-| 2026-10-13 | [Menu jumps land on the section](2026-10-13-menu-jump-spacing.md) | Removed the large gap after clicking a menu link; About fits one screen |
-| 2026-10-12 | [Brochure, clients and hero redesign](2026-10-12-brochure-clients-hero.md) | Real contact details, new hero, clients section, brochure page, real logo and product photos |
-| 2026-10-04 | [Custom domain and contact form](2026-10-04-custom-domain.md) | naturefrost.com as the canonical domain, hosting prep, contact form visibility |
-| 2026-10-03 | [Hero and catalogue improvements](2026-10-03-hero-catalogue.md) | Facility photo in the hero, product catalogue improvements |
-| 2026-08-15 | [First version](2026-08-15-first-version.md) | Initial website |
+| 2026-10-13 | [Nature Frost favicon](2026-10-13-favicon.md)                                   | Logo favicon for browser tabs and phone home screens                                                                     |
+| 2026-10-13 | [Menu and home page in the same order](2026-10-13-section-order.md)             | Sections follow the menu; Sustainability back in the desktop menu                                                        |
+| 2026-10-13 | [Menu jumps land on the section](2026-10-13-menu-jump-spacing.md)               | Removed the large gap after clicking a menu link; About fits one screen                                                  |
+| 2026-10-12 | [Brochure, clients and hero redesign](2026-10-12-brochure-clients-hero.md)      | Real contact details, new hero, clients section, brochure page, real logo and product photos                             |
+| 2026-10-04 | [Custom domain and contact form](2026-10-04-custom-domain.md)                   | naturefrost.com as the canonical domain, hosting prep, contact form visibility                                           |
+| 2026-10-03 | [Hero and catalogue improvements](2026-10-03-hero-catalogue.md)                 | Facility photo in the hero, product catalogue improvements                                                               |
+| 2026-08-15 | [First version](2026-08-15-first-version.md)                                    | Initial website                                                                                                          |
 
 ## Adding an entry
 

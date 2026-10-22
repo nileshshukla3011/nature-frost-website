@@ -38,7 +38,7 @@ export function CTABand({
 
         <a
           href={`mailto:${site.email}`}
-          className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-white/80 underline-offset-4 transition-colors hover:text-white hover:underline"
+          className="mt-6 inline-flex min-h-6 items-center gap-2 text-sm font-medium text-white/80 underline-offset-4 transition-colors hover:text-white hover:underline"
         >
           <Mail className="h-4 w-4" />
           {site.email}

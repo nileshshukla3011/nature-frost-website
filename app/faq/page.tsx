@@ -69,7 +69,7 @@ export default function FaqPage() {
                     {item.link && (
                       <Link
                         href={item.link.href}
-                        className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline"
+                        className="mt-3 inline-flex min-h-6 items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline"
                       >
                         {item.link.label}
                         <ArrowRight className="h-4 w-4" />

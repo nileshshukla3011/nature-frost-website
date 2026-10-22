@@ -58,6 +58,9 @@ export const metadata: Metadata = {
    * which this setting does not affect.
    */
   formatDetection: { telephone: false, email: false, address: false },
+  // Other sites see only "naturefrost.com" as the referrer, never full paths
+  // such as /contact/?product=… .
+  referrer: "strict-origin-when-cross-origin",
 };
 
 export const viewport: Viewport = {
@@ -83,6 +86,18 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        {/*
+          Clickjacking guard. GitHub Pages cannot send the X-Frame-Options or
+          frame-ancestors headers, so if another site loads this page inside a
+          frame, hide it (nothing to trick a visitor into clicking) and try to
+          break out to a normal tab.
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "if(window.top!==window.self){document.documentElement.style.display='none';try{window.top.location.replace(window.self.location.href)}catch(e){}}",
+          }}
+        />
         {/* Organization + LocalBusiness data for search engines. */}
         <script
           type="application/ld+json"
