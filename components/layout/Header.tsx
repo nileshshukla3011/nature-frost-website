@@ -18,9 +18,10 @@ export function Header() {
 
   /*
    * Desktop links, in the same order as the home page sections. Contact and
-   * Brochure are buttons on the right, and Home is the logo.
+   * Brochure are buttons on the right, Home is the logo, and FAQ is in the
+   * phone menu and the footer.
    */
-  const desktopHidden = new Set(["/", "/contact", "/brochure"]);
+  const desktopHidden = new Set(["/", "/contact", "/brochure", "/faq"]);
   const links = navigation.filter((item) => !desktopHidden.has(item.href));
 
   /**

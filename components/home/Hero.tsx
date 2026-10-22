@@ -12,6 +12,7 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { site } from "@/lib/site";
 import { asset } from "@/lib/utils";
+import { facilityPhoto } from "@/lib/images";
 
 const trustPoints = [
   "100% Natural, No Preservatives",
@@ -62,10 +63,12 @@ export function Hero() {
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={asset("/nature-frost-facility.jpeg")}
+        src={facilityPhoto.src}
+        srcSet={facilityPhoto.srcSet}
+        sizes="(min-width: 64rem) 68vw, 100vw"
         alt=""
-        width={1536}
-        height={1024}
+        width={facilityPhoto.width}
+        height={facilityPhoto.height}
         fetchPriority="high"
         className="hero-photo absolute inset-x-0 top-0 -z-20 h-[24rem] w-full object-cover sm:h-[30rem] lg:inset-y-0 lg:left-auto lg:h-full lg:w-[68%]"
       />

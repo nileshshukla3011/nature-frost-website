@@ -3,6 +3,7 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { Card } from "@/components/ui/Card";
 import { site } from "@/lib/site";
 import { asset } from "@/lib/utils";
+import { facilityPhoto } from "@/lib/images";
 
 const missionPoints = [
   "Build strong farmer and supplier relationships",
@@ -32,7 +33,9 @@ export function AboutSection() {
         <figure className="group relative aspect-[4/3] overflow-hidden rounded-3xl border border-border sm:aspect-[16/10] lg:col-span-7 lg:row-span-2 lg:aspect-auto lg:min-h-[27rem]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={asset("/nature-frost-facility.jpeg")}
+            src={facilityPhoto.src}
+            srcSet={facilityPhoto.srcSet}
+            sizes="(min-width: 64rem) 58vw, 100vw"
             alt="The Nature Frost processing facility"
             loading="lazy"
             className="zoom-on-hover absolute inset-0 h-full w-full object-cover object-[62%_55%]"

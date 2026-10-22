@@ -1,7 +1,13 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ArrowRight, CalendarDays, MessageCircle, Send } from "lucide-react";
+import {
+  ArrowRight,
+  CalendarDays,
+  Check,
+  MessageCircle,
+  Send,
+} from "lucide-react";
 import { getProduct, products } from "@/lib/products";
 import { whatsappLink } from "@/lib/site";
 import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
@@ -31,9 +37,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const product = getProduct(slug);
   if (!product) return {};
 
+  // "Soups and chowders, salads and corn chaat, …" for the description.
+  const uses = product.uses
+    .map((use, i) => (i === 0 ? use : use[0].toLowerCase() + use.slice(1)))
+    .join(", ");
+
   return buildMetadata({
-    title: `Frozen ${product.name}`,
-    description: `${product.description} Formats: ${product.formats.join(", ")}. Bulk, HoReCa, retail and private-label packs from Nature Frost, Bihar, India.`,
+    title: `IQF Frozen ${product.name} Supplier in India`,
+    description: `${product.description} Typical uses: ${uses}. Formats: ${product.formats.join(", ")}. Bulk, HoReCa, retail and private-label packs from Bihar.`,
     path: `/products/${product.slug}`,
     keywords: [
       `frozen ${product.name.toLowerCase()}`,
@@ -131,6 +142,24 @@ export default async function ProductPage({ params }: Props) {
               </div>
               <div>
                 <dt className="text-xs font-semibold uppercase tracking-wider text-faint-foreground">
+                  Typical uses
+                </dt>
+                <dd className="mt-2">
+                  <ul className="grid gap-1.5 text-sm text-foreground sm:grid-cols-2">
+                    {product.uses.map((use) => (
+                      <li key={use} className="flex items-start gap-2">
+                        <Check
+                          className="mt-0.5 h-4 w-4 shrink-0 text-primary"
+                          strokeWidth={2.5}
+                        />
+                        {use}
+                      </li>
+                    ))}
+                  </ul>
+                </dd>
+              </div>
+              <div>
+                <dt className="text-xs font-semibold uppercase tracking-wider text-faint-foreground">
                   Processing
                 </dt>
                 <dd className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
@@ -142,6 +171,16 @@ export default async function ProductPage({ params }: Props) {
                   >
                     How IQF works
                   </Link>
+                </dd>
+              </div>
+              <div>
+                <dt className="text-xs font-semibold uppercase tracking-wider text-faint-foreground">
+                  Storage and handling
+                </dt>
+                <dd className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                  Keep frozen at −18°C or lower. Cook straight from frozen —
+                  most products need no thawing — and do not refreeze once
+                  thawed.
                 </dd>
               </div>
             </dl>

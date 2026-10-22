@@ -5,6 +5,7 @@ has its own file in this folder.
 
 | Date | Release | Summary |
 |---|---|---|
+| 2026-10-22 | [Search engine improvements](2026-10-22-seo.md) | FAQ page, keyword titles, product uses, richer structured data, faster hero image, Search Console set-up |
 | 2026-10-22 | [Shorter home page, product pages and review fixes](2026-10-22-review-fixes.md) | Technology and facility pages, a page per product, link-preview image, accessibility and SEO fixes, smaller brochure PDF |
 | 2026-10-13 | [Nature Frost favicon](2026-10-13-favicon.md) | Logo favicon for browser tabs and phone home screens |
 | 2026-10-13 | [Menu and home page in the same order](2026-10-13-section-order.md) | Sections follow the menu; Sustainability back in the desktop menu |

@@ -1,5 +1,5 @@
 import { FileDown, Phone } from "lucide-react";
-import { buildMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 import { brochurePages, brochurePageSize } from "@/lib/brochure";
 import { site } from "@/lib/site";
 import { asset } from "@/lib/utils";
@@ -25,6 +25,15 @@ export default function BrochurePage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbJsonLd([{ name: "Brochure", path: "/brochure" }]),
+          ),
+        }}
+      />
+
       <PageHeader
         breadcrumb="Brochure"
         eyebrow="Company Brochure"

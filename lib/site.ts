@@ -120,6 +120,16 @@ export const site = {
   },
 
   /**
+   * Search engine ownership checks. In Google Search Console choose the
+   * "HTML tag" method and paste only its content="…" value here; do the same
+   * for Bing Webmaster Tools. Rebuild after adding them. Empty adds nothing.
+   */
+  verification: {
+    google: "",
+    bing: "",
+  },
+
+  /**
    * Certification badges are intentionally EMPTY until real certificates are
    * issued. Publishing a badge you do not hold is a compliance risk with
    * institutional buyers and export customers.
@@ -158,6 +168,7 @@ export const navigation = [
   { label: "Sustainability", href: "/facility#sustainability" },
   { label: "Markets", href: "/#markets" },
   { label: "Clients", href: "/#clients" },
+  { label: "FAQ", href: "/faq" },
   { label: "Brochure", href: "/brochure" },
   { label: "Contact", href: "/contact" },
 ] as const;
@@ -168,9 +179,15 @@ export const pageRoutes = [
   "/products",
   "/technology",
   "/facility",
+  "/faq",
   "/brochure",
   "/contact",
 ] as const;
+
+/** The general line — also the WhatsApp number. The others belong to people. */
+export const mainPhone =
+  site.phones.find((p) => p.whatsapp === site.whatsapp.number) ??
+  site.phones[0];
 
 /** Builds a WhatsApp deep link with an optional pre-filled message. */
 export function whatsappLink(message: string = site.whatsapp.prefillMessage) {

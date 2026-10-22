@@ -1,4 +1,4 @@
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, websiteJsonLd } from "@/lib/seo";
 import { Hero } from "@/components/home/Hero";
 import { StatsBand } from "@/components/home/StatsBand";
 import { ClientsSection } from "@/components/home/ClientsSection";
@@ -12,7 +12,7 @@ import { WhyNatureFrost } from "@/components/home/WhyNatureFrost";
 import { CTABand } from "@/components/home/CTABand";
 
 export const metadata = buildMetadata({
-  title: "Nature Frost — Premium IQF Frozen Fruits & Vegetables from India",
+  title: "Nature Frost — IQF Frozen Fruits & Vegetables, Bihar, India",
   description:
     "Premium IQF frozen fruits and vegetables from Shree Kangan Food Park, Begusarai, Bihar: a planned 3 MT/hour facility for HoReCa, food manufacturers, retail, distributors and export.",
   path: "/",
@@ -33,6 +33,11 @@ export const metadata = buildMetadata({
 export default function HomePage() {
   return (
     <>
+      {/* Site name for search results. */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }}
+      />
       <Hero />
       <StatsBand />
       <ClientsSection />

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { site } from "@/lib/site";
 import { asset, cn } from "@/lib/utils";
 
 /**
@@ -26,10 +25,10 @@ export function LogoMark({
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={asset("/images/brand/nature-frost-mark.png")}
+        src={asset("/images/brand/nature-frost-mark.webp")}
         alt=""
-        width={158}
-        height={158}
+        width={120}
+        height={120}
         className="h-full w-full object-contain"
       />
     </span>
@@ -46,11 +45,7 @@ export function Logo({
   inverted?: boolean;
 }) {
   return (
-    <Link
-      href="/"
-      className={cn("group flex items-center gap-2.5", className)}
-      aria-label={`${site.name} — home`}
-    >
+    <Link href="/" className={cn("group flex items-center gap-2.5", className)}>
       <LogoMark
         onDark={inverted}
         className="shrink-0 transition-transform duration-300 group-hover:scale-105"
@@ -63,6 +58,9 @@ export function Logo({
           )}
         >
           Nature<span className="text-primary">Frost</span>
+          {/* The link's name starts with the visible wordmark, so voice
+              control ("click NatureFrost") works; this adds where it goes. */}
+          <span className="sr-only"> (home)</span>
         </span>
         {showTagline && (
           <span

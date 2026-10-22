@@ -30,6 +30,8 @@ export interface Product {
   tint: "green" | "amber" | "violet" | "rose";
   /** Shown as a small ribbon on the card. */
   featured?: boolean;
+  /** Typical kitchen and food-production uses, shown on the product page. */
+  uses: string[];
 }
 
 export const categories: {
@@ -54,6 +56,12 @@ export const products: Product[] = [
     image: "/images/products/sweet-corn.webp",
     tint: "amber",
     featured: true,
+    uses: [
+      "Soups and chowders",
+      "Salads and corn chaat",
+      "Pizza and sandwich toppings",
+      "Ready meals and snacks",
+    ],
   },
   {
     slug: "green-peas",
@@ -67,6 +75,12 @@ export const products: Product[] = [
     image: "/images/products/green-peas.webp",
     tint: "green",
     featured: true,
+    uses: [
+      "Matar paneer and curries",
+      "Pulao and biryani",
+      "Samosa and kachori fillings",
+      "Soups and ready meals",
+    ],
   },
   {
     slug: "okra-bhindi",
@@ -79,6 +93,12 @@ export const products: Product[] = [
     emoji: "🥒",
     tint: "green",
     featured: true,
+    uses: [
+      "Bhindi masala and sabzi",
+      "Curries and stews",
+      "Crispy fried bhindi",
+      "Ready meals",
+    ],
   },
   {
     slug: "yam",
@@ -90,6 +110,12 @@ export const products: Product[] = [
     season: "Oct – Feb harvest",
     emoji: "🍠",
     tint: "amber",
+    uses: [
+      "Curries and sabzi",
+      "Cutlets, chips and fries",
+      "Soups and stews",
+      "Ready meals",
+    ],
   },
   {
     slug: "yellow-carrot",
@@ -101,6 +127,12 @@ export const products: Product[] = [
     season: "Nov – Mar harvest",
     emoji: "🥕",
     tint: "amber",
+    uses: [
+      "Soups and stir-fries",
+      "Mixed vegetable blends",
+      "Salads and pickles",
+      "Ready meals",
+    ],
   },
   {
     slug: "broccoli",
@@ -114,6 +146,12 @@ export const products: Product[] = [
     image: "/images/products/broccoli.webp",
     tint: "green",
     featured: true,
+    uses: [
+      "Stir-fries and pasta",
+      "Soups and salads",
+      "Steamed and grilled sides",
+      "Ready meals",
+    ],
   },
   {
     slug: "cauliflower",
@@ -125,6 +163,12 @@ export const products: Product[] = [
     season: "Oct – Mar harvest",
     emoji: "🥬",
     tint: "green",
+    uses: [
+      "Aloo gobi and curries",
+      "Gobi paratha fillings",
+      "Gobi manchurian",
+      "Soups and ready meals",
+    ],
   },
   {
     slug: "baby-corn",
@@ -136,6 +180,12 @@ export const products: Product[] = [
     season: "Year-round supply",
     emoji: "🌽",
     tint: "amber",
+    uses: [
+      "Stir-fries and Indo-Chinese dishes",
+      "Baby corn manchurian",
+      "Curries and salads",
+      "Pizza toppings",
+    ],
   },
   {
     slug: "grilled-brinjal",
@@ -147,6 +197,12 @@ export const products: Product[] = [
     season: "Year-round supply",
     emoji: "🍆",
     tint: "violet",
+    uses: [
+      "Antipasti and mezze platters",
+      "Sandwiches and wraps",
+      "Baingan bharta",
+      "Pasta and bakes",
+    ],
   },
   {
     slug: "mixed-vegetables",
@@ -160,6 +216,12 @@ export const products: Product[] = [
     image: "/images/products/mixed-vegetables.webp",
     tint: "green",
     featured: true,
+    uses: [
+      "Pulao and fried rice",
+      "Soups and stews",
+      "Curries and sabzi",
+      "Ready meals",
+    ],
   },
   {
     slug: "pineapple",
@@ -172,6 +234,12 @@ export const products: Product[] = [
     emoji: "🍍",
     tint: "amber",
     featured: true,
+    uses: [
+      "Smoothies and juices",
+      "Desserts and bakery fillings",
+      "Salsas and salads",
+      "Pizza toppings",
+    ],
   },
   {
     slug: "jackfruit",
@@ -184,6 +252,12 @@ export const products: Product[] = [
     emoji: "🍈",
     tint: "amber",
     featured: true,
+    uses: [
+      "Desserts and ice creams (ripe)",
+      "Kathal curry and biryani (raw)",
+      "Plant-based meat alternatives",
+      "Smoothies",
+    ],
   },
   {
     slug: "seasonal-fruits",
@@ -196,6 +270,12 @@ export const products: Product[] = [
     emoji: "🍓",
     image: "/images/products/seasonal-fruits.webp",
     tint: "rose",
+    uses: [
+      "Smoothies and juices",
+      "Ice creams and desserts",
+      "Bakery and confectionery",
+      "Jams and fruit fillings",
+    ],
   },
   {
     slug: "custom-fruit-products",
@@ -208,6 +288,12 @@ export const products: Product[] = [
     emoji: "🍊",
     image: "/images/products/custom-fruit-products.webp",
     tint: "amber",
+    uses: [
+      "Dairy and ice cream",
+      "Bakery and confectionery",
+      "Beverages",
+      "Ready-to-eat desserts",
+    ],
   },
 ];
 

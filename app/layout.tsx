@@ -25,7 +25,7 @@ const jakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — Premium IQF Frozen Fruits & Vegetables from India`,
+    default: `${site.name} — IQF Frozen Fruits & Vegetables, Bihar, India`,
     template: `%s | ${site.name}`,
   },
   description: site.shortDescription,
@@ -33,7 +33,14 @@ export const metadata: Metadata = {
   authors: [{ name: site.name }],
   creator: site.name,
   publisher: site.name,
-  robots: { index: true, follow: true },
+  // No site-wide robots tag: pages are indexable by default, and the 404
+  // page's own "noindex" then stands alone instead of contradicting one.
+  verification: {
+    google: site.verification.google || undefined,
+    other: site.verification.bing
+      ? { "msvalidate.01": site.verification.bing }
+      : undefined,
+  },
   icons: {
     // Nature Frost leaf-and-snowflake mark on a white tile, so it stays
     // visible on dark browser tab bars. Generated from

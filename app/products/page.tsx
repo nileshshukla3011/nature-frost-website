@@ -14,7 +14,7 @@ import { PackFormatsSection } from "@/components/products/PackFormatsSection";
 import { CTABand } from "@/components/home/CTABand";
 
 export const metadata = buildMetadata({
-  title: "Products",
+  title: "Frozen Vegetables & Fruits Range",
   description:
     "IQF frozen vegetables and fruits from Nature Frost — sweet corn, green peas, okra, broccoli, cauliflower, baby corn, pineapple, jackfruit and more, in bulk, HoReCa, retail and private-label formats.",
   path: "/products",

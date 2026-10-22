@@ -37,6 +37,7 @@ npm run serve   # preview that folder at http://localhost:3000
 | `/products/<product>` | One page per product, e.g. `/products/sweet-corn`, built from `lib/products.ts`           |
 | `/technology`         | IQF explained, the five processing stages, temperature chart, farm-to-freezer, why frozen |
 | `/facility`           | Quality checks, infrastructure and sustainability                                         |
+| `/faq`                | Questions buyers ask — IQF, shelf life, products, packs, export, ordering                 |
 | `/brochure`           | The company brochure, page by page, with a PDF download                                   |
 | `/contact`            | The enquiry form and contact details                                                      |
 
@@ -128,6 +129,29 @@ not be used by a private company.
 
 ---
 
+## Getting found on Google
+
+The site is ready for search engines: a title and description for every
+page, a sitemap, structured data (business details, opening hours,
+breadcrumbs and the FAQ), a page per product and a link-preview picture.
+Three steps only the business can take:
+
+1. **Google Search Console** — add naturefrost.com at
+   https://search.google.com/search-console. The _Domain_ option is verified
+   with a DNS record at the domain registrar; the _URL prefix_ option with an
+   HTML tag, whose content value goes in `verification.google` in
+   `lib/site.ts` (then rebuild). Then submit
+   `https://naturefrost.com/sitemap.xml` under **Sitemaps**.
+2. **Bing Webmaster Tools** — https://www.bing.com/webmasters can import the
+   site straight from Search Console, or use `verification.bing`. This also
+   covers Yahoo.
+3. **Google Business Profile** — create one for the factory (and the Patna
+   office) at https://business.google.com so Nature Frost shows on Google Maps
+   and in local results. Use exactly the same name, address and phone number
+   as the site.
+
+---
+
 ## Publishing the site
 
 Any of these work. **Netlify is the easiest** if you are not a developer.
@@ -161,6 +185,8 @@ inside `out/` into `public_html/` by FTP.
 | Change the menu                                | `lib/site.ts` → `navigation`                                                                                                                                            |
 | Change the brand colours                       | `app/globals.css` — the `:root` and `.dark` blocks at the top                                                                                                           |
 | Change the link-preview picture                | `public/og-image.jpg` (1200×630) — shown when a page is shared on WhatsApp, LinkedIn or X                                                                               |
+| Edit the FAQ                                   | `lib/faq.ts` — answers can use the product, pack and contact data, so they stay in step with the site                                                                   |
+| Replace the facility photo                     | `public/nature-frost-facility.jpeg`, plus 640/960/1280/1536 px WebP copies in `public/images/facility/` (see `lib/images.ts`)                                           |
 | Replace the logo                               | `public/images/brand/nature-frost-mark.png` (used by `components/layout/Logo.tsx`), then regenerate `public/favicon.ico`, `icon.png` and `apple-touch-icon.png` from it |
 
 ### Images
@@ -205,11 +231,12 @@ Last checked 2026-10-22:
 - Production build clean, TypeScript clean, 0 npm vulnerabilities
 - **Zero accessibility violations** (axe, WCAG 2.1 AA and best practices) on
   every page type — home, catalogue, a product page, technology, facility,
-  brochure and contact — at 1440 px and 390 px, in light and dark mode
+  FAQ, brochure and contact — at 1440 px and 390 px, in light and dark mode
 - Keyboard: the closed phone menu is out of the Tab order; opening it moves
   focus inside, and closing returns focus to the menu button
 - No horizontal scrolling at 360 / 390 / 768 / 1024 / 1440 px
 - No broken internal links in the built site
+- Lighthouse SEO 100 on the home, FAQ, product and technology pages
 - Renders fully with JavaScript disabled
 - Charts use colours validated for colour-blind readability and 3:1 contrast in
   both themes

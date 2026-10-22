@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { site, formattedAddress } from "./site";
+import { site, formattedAddress, mainPhone } from "./site";
+import { faqItems } from "./faq";
 
 /**
  * The link-preview card shown when a page is shared on WhatsApp, LinkedIn,
@@ -11,6 +12,9 @@ const shareImage = {
   height: 630,
   alt: `${site.name} — premium IQF frozen fruits and vegetables from India`,
 };
+
+/** Stable id, so page-level structured data can refer to the company. */
+const organizationId = `${site.url}/#organization`;
 
 /**
  * Shared metadata builder. Every page calls this so titles, canonical URLs and
@@ -72,13 +76,22 @@ export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": ["Organization", "LocalBusiness"],
+    "@id": organizationId,
     name: site.name,
     legalName: site.legalName,
     description: site.shortDescription,
     url: site.url,
+    logo: `${site.url}/icon.png`,
+    image: `${site.url}${shareImage.url}`,
     email: site.email,
     slogan: site.tagline,
     telephone: site.phones.map((p) => p.tel),
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "sales",
+      telephone: mainPhone.tel,
+      email: site.email,
+    },
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: site.openingHours.days,
@@ -95,6 +108,9 @@ export function organizationJsonLd() {
       postalCode: site.address.postalCode || undefined,
       addressCountry: site.address.countryCode,
     },
+    hasMap: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+      site.address.mapQuery,
+    )}`,
     areaServed: [
       { "@type": "Country", name: "India" },
       { "@type": "Place", name: "Export markets worldwide" },
@@ -125,6 +141,36 @@ export function productCatalogJsonLd(items: { name: string; slug: string }[]) {
       position: index + 1,
       name: item.name,
       url: absoluteUrl(`/products/${item.slug}`),
+    })),
+  };
+}
+
+/**
+ * WebSite structured data for the home page. Google uses its `name` and
+ * `alternateName` for the site name it shows above search results.
+ */
+export function websiteJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${site.url}/#website`,
+    name: site.name,
+    alternateName: "NatureFrost",
+    url: `${site.url}/`,
+    inLanguage: "en-IN",
+    publisher: { "@id": organizationId },
+  };
+}
+
+/** FAQPage structured data for /faq, built from lib/faq.ts. */
+export function faqJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
     })),
   };
 }

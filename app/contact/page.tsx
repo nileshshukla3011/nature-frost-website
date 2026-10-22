@@ -9,13 +9,13 @@ import {
   Phone,
   UserRound,
 } from "lucide-react";
-import { buildMetadata } from "@/lib/seo";
-import { site, formattedAddress, whatsappLink } from "@/lib/site";
+import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
+import { site, formattedAddress, mainPhone, whatsappLink } from "@/lib/site";
 import { Container } from "@/components/ui/Container";
 import { ContactForm } from "@/components/contact/ContactForm";
 
 export const metadata = buildMetadata({
-  title: "Contact Us",
+  title: "Contact & Bulk Enquiries",
   description:
     "Contact Nature Frost for bulk requirements, product specifications, private-label opportunities, HoReCa supply, distribution partnerships and export enquiries.",
   path: "/contact",
@@ -23,9 +23,7 @@ export const metadata = buildMetadata({
 });
 
 /** The general line — also the WhatsApp number. The others belong to people. */
-const mainLine =
-  site.phones.find((p) => p.whatsapp === site.whatsapp.number) ??
-  site.phones[0];
+const mainLine = mainPhone;
 
 /**
  * Contact page, laid out to fit one laptop screen: intro and a single contact
@@ -35,6 +33,15 @@ const mainLine =
 export default function ContactPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbJsonLd([{ name: "Contact", path: "/contact" }]),
+          ),
+        }}
+      />
+
       <section className="bg-hero-tint">
         <Container className="grid items-start gap-6 py-6 sm:py-8 lg:grid-flow-dense lg:grid-cols-12 lg:gap-x-10 lg:gap-y-5 lg:pb-8 lg:pt-6">
           {/* ---------- Intro ---------- */}
@@ -66,6 +73,15 @@ export default function ContactPage() {
             <p className="mt-2.5 text-base leading-relaxed text-muted-foreground">
               Bulk supply, specifications, private label and export enquiries —
               tell us what your business needs.
+            </p>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Quick question?{" "}
+              <Link
+                href="/faq"
+                className="font-semibold text-primary underline-offset-4 hover:underline"
+              >
+                See the FAQ
+              </Link>
             </p>
           </div>
 
